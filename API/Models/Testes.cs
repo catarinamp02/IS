@@ -11,8 +11,8 @@ namespace API.Models
 
         public string Codigo_Resultado { get; set; }
 
-        public DateTime Data_Teste { get; set; }
+        public DateOnly Data_Teste { get; set; }
 
-        public Produto Produto { get; set; }
+        //public Produto Produto { get; set; }
     }
 }
