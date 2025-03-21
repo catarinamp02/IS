@@ -3,19 +3,15 @@ GO
 
 USE Producao;
 GO
-
+drop database Producao
 -----------------------------------------
 ------------Create TABLES----------------
 -----------------------------------------
 
 CREATE TABLE Produto (
     ID_Produto INT IDENTITY(1,1) PRIMARY KEY,
-    Codigo_Peca CHAR(8) NOT NULL UNIQUE CHECK (
-        Codigo_Peca LIKE 'aa______' 
-        OR Codigo_Peca LIKE 'ab______' 
-        OR Codigo_Peca LIKE 'ba______' 
-        OR Codigo_Peca LIKE 'bb______'
-    ),
+	Codigo_Peca CHAR(8) NOT NULL UNIQUE CHECK (
+    Codigo_Peca LIKE '[a-b][a-b][0-9][0-9][0-9][0-9][0-9][0-9]'),
     Data_Producao DATE NOT NULL,
     Hora_Producao TIME(0) NOT NULL,
     Tempo_Producao INT CHECK (Tempo_Producao BETWEEN 10 AND 50) NOT NULL
@@ -30,7 +26,7 @@ CREATE TABLE Testes (
     Data_Teste DATE NOT NULL,
     FOREIGN KEY (ID_Produto) REFERENCES Produto(ID_Produto)
 );
-
+GO
 
 -----------------------------------------
 ----------Create FUNCTIONS----------------
@@ -41,11 +37,9 @@ CREATE FUNCTION ValidarCodigoPeca (@Codigo_Peca CHAR(8))
 RETURNS BIT
 AS
 BEGIN
-    IF @Codigo_Peca LIKE 'aa______' OR 
-       @Codigo_Peca LIKE 'ab______' OR 
-       @Codigo_Peca LIKE 'ba______' OR 
-       @Codigo_Peca LIKE 'bb______'
-       RETURN 1;  -- Código válido
+ IF @Codigo_Peca LIKE '[a-b][a-b][0-9][0-9][0-9][0-9][0-9][0-9]'
+    
+	RETURN 1;  -- Código válido
     RETURN 0;  -- Código inválido
 END;
 GO
@@ -154,7 +148,8 @@ CREATE PROCEDURE InserirProduto
     @Codigo_Peca CHAR(8),
     @Data_Producao DATE,
     @Hora_Producao TIME(0),
-    @Tempo_Producao INT
+    @Tempo_Producao INT,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
 
@@ -163,35 +158,35 @@ BEGIN
 	-- Verifica se Código já Existe
 	IF dbo.ExisteCodigoPeca(@Codigo_Peca) = 1
 	BEGIN
-		PRINT 'Erro: Código da peça já existe!';
+		RAISERROR('Código da Peça já existe!',16,1);	
 		RETURN;
 	END;
 
 	-- Verifica se o Código é Inválido
 	IF dbo.ValidarCodigoPeca(@Codigo_Peca) = 0
 	BEGIN
-		PRINT 'Erro: Código da peça inválido!';
+		RAISERROR('Código da Peça inválido!',16,1);
 		RETURN;
 	END;
 
 	-- Verifica se a Data de Produção é Inválida
 	IF dbo.ValidarDataProducao(@Data_Producao) = 0
 	BEGIN
-		PRINT 'Erro: A data de produção não pode ser no futuro!';
+		RAISERROR('Data de Produção inválida! A Data de Produção não pode ser superior à Data de hoje e/ou tem de estar no formato yyyy-mm-dd !',16,1);
 		RETURN;
 	END;
 
 	-- Verifica se a Hora de Produção é Inválida
 	IF dbo.ValidarHoraProducao(@Data_Producao, @Hora_Producao) = 0
     BEGIN
-        PRINT 'Erro: A hora de produção não pode ser no futuro!';
+        RAISERROR('Hora de Produção inválida! A Hora de Produção não pode ser superior à Hora de hoje e/ou tem de estar no formato hh:mm:ss !',16,1);
         RETURN;
     END
 
 	-- Verifica se o Tempo de Produção é Inválido
 	IF dbo.ValidarTempoProducao(@Tempo_Producao) = 0
 	BEGIN
-		PRINT 'Erro: Tempo de produção inválido!';
+		RAISERROR('Tempo de produção inválido! Tem de ser entre 10 e 50 segundos!',16,1);
 		RETURN;
 	END;
 
@@ -199,7 +194,7 @@ BEGIN
     INSERT INTO Produto (Codigo_Peca, Data_Producao, Hora_Producao, Tempo_Producao)
     VALUES (@Codigo_Peca, @Data_Producao, @Hora_Producao, @Tempo_Producao);
 
-    PRINT 'Produto inserido com sucesso!';
+     SET @Mensagem =  'Produto inserido com sucesso!';
 END;
 GO
 
@@ -207,7 +202,8 @@ GO
 CREATE PROCEDURE InserirTeste
     @ID_Produto INT,
     @Codigo_Resultado CHAR(2),
-    @Data_Teste DATE
+    @Data_Teste DATE,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -215,28 +211,28 @@ BEGIN
     -- Verifica se o Produto existe
     IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O produto não existe!';
+        RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 	
 	-- Verifica se existe já um Teste para um Produto existente (**** ver se já existe um teste)
     IF dbo.ExisteTesteParaProduto(@ID_Produto) = 1
     BEGIN
-        PRINT 'Erro: Já existe um teste para este produto!';
+        RAISERROR('Já existe um teste para este produto!',16,1);
         RETURN;
     END
 
 	 -- Verifica se a Data_Teste é válida
     IF dbo.ValidarDataTeste(@Data_Teste) = 0
     BEGIN
-        PRINT 'Erro: Data do teste inválida (não pode estar no futuro)!';
+        RAISERROR('Data de Teste inválida! A Data de Teste não pode ser superior à Data de hoje e/ou tem de estar no formato yyyy-mm-dd !',16,1);
         RETURN;
     END
 
     -- Valida o Código do Resultado do Teste
     IF dbo.ValidarCodigoResultado(@Codigo_Resultado) = 0
     BEGIN
-        PRINT 'Aviso: Código do teste desconhecido!';
+        --PRINT 'Aviso: Código do teste desconhecido!';
         SET @Codigo_Resultado = '06';
     END
 
@@ -244,7 +240,7 @@ BEGIN
     INSERT INTO Testes (ID_Produto, Codigo_Resultado, Data_Teste)
     VALUES (@ID_Produto, @Codigo_Resultado, @Data_Teste);
 
-    PRINT 'Teste inserido com sucesso!';
+    SET @Mensagem = 'Teste inserido com sucesso!';
 END;
 GO
 -----------------------------------------
@@ -276,7 +272,7 @@ BEGIN
     -- Verifica se o Produto existe
     IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O produto não existe!';
+        RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 
@@ -287,6 +283,7 @@ BEGIN
 END;
 GO
 
+
 CREATE PROCEDURE ConsultarTestesPorProduto
     @ID_Produto INT
 AS
@@ -296,21 +293,23 @@ BEGIN
     -- Verifica se o Produto existe
     IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O produto não existe!';
+        RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 
 	-- Verifica se existe Testes para um Produto existente
     IF dbo.ExisteTesteParaProduto(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: Não existem testes para este produto!';
+		RAISERROR('Não existem testes para este produto!',16,1);
         RETURN;
     END
 
-    -- Retorna os testes do Produto
-    SELECT T.ID_Teste, T.ID_Produto, P.Codigo_Peca, T.Codigo_Resultado, T.Data_Teste
+	SELECT 
+        T.ID_Teste, 
+        T.ID_Produto, 
+        T.Codigo_Resultado, 
+        T.Data_Teste
     FROM Testes T
-    INNER JOIN Produto P ON T.ID_Produto = P.ID_Produto
     WHERE T.ID_Produto = @ID_Produto;
 END;
 GO
@@ -322,7 +321,8 @@ CREATE PROCEDURE AtualizarProduto
     @Codigo_Peca CHAR(8),
     @Data_Producao DATE,
     @Hora_Producao TIME(0),
-    @Tempo_Producao INT
+    @Tempo_Producao INT,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -330,7 +330,7 @@ BEGIN
     -- Verifica se o Produto existe
     IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O produto não existe!';
+        RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 
@@ -342,7 +342,7 @@ BEGIN
     BEGIN
         IF dbo.ExisteCodigoPeca(@Codigo_Peca) = 1
         BEGIN
-            PRINT 'Erro: Código da peça já existe!';
+            RAISERROR('Código da Peça já existe!',16,1);
             RETURN;
         END
     END
@@ -350,28 +350,28 @@ BEGIN
 	-- Verifica se o Código é Inválido
 	IF dbo.ValidarCodigoPeca(@Codigo_Peca) = 0
 	BEGIN
-		PRINT 'Erro: Código da peça inválido!';
+		RAISERROR('Código da Peça inválido!',16,1);
 		RETURN;
 	END;
 
 	-- Verifica se a Data de Produção é Inválida
 	IF dbo.ValidarDataProducao(@Data_Producao) = 0
 	BEGIN
-		PRINT 'Erro: A data de produção não pode ser no futuro!';
+		RAISERROR('Data de Produção inválida! A Data de Produção não pode ser superior à Data de hoje e/ou tem de estar no formato yyyy-mm-dd !',16,1);
 		RETURN;
 	END;
 
 	-- Verifica se a Hora de Produção é Inválida
 	IF dbo.ValidarHoraProducao(@Data_Producao, @Hora_Producao) = 0
     BEGIN
-        PRINT 'Erro: A hora de produção não pode ser no futuro!';
+        RAISERROR('Hora de Produção inválida! A Hora de Produção não pode ser superior à Hora de hoje e/ou tem de estar no formato hh:mm:ss !',16,1);
         RETURN;
     END
 
 	-- Verifica se o Tempo de Produção é Inválido
 	IF dbo.ValidarTempoProducao(@Tempo_Producao) = 0
 	BEGIN
-		PRINT 'Erro: Tempo de produção inválido!';
+		RAISERROR('Tempo de produção inválido! Tem de ser entre 10 e 50 segundos!',16,1);
 		RETURN;
 	END;
 
@@ -383,7 +383,7 @@ BEGIN
         Tempo_Producao = @Tempo_Producao
     WHERE ID_Produto = @ID_Produto;
 
-    PRINT 'Produto atualizado com sucesso!';
+    SET @Mensagem = 'Produto atualizado com sucesso!';
 END;
 GO
 
@@ -391,36 +391,37 @@ CREATE PROCEDURE AtualizarTeste
     @ID_Teste INT,
     @ID_Produto INT,
     @Codigo_Resultado CHAR(2),
-    @Data_Teste DATE
+    @Data_Teste DATE,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Verifica se o Teste existe
-    IF dbo.TesteExiste(@ID_Teste) = 0
+	    -- Verifica se o Produto existe
+    IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O teste não existe!';
+		RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 
-    -- Verifica se o Produto existe
-    IF dbo.ProdutoExiste(@ID_Produto) = 0
+    -- Verifica se o Teste existe
+    IF dbo.TesteExiste(@ID_Teste) = 0
     BEGIN
-        PRINT 'Erro: O produto associado não existe!';
+		RAISERROR('O teste para este produto, ainda não existe!',16,1);
         RETURN;
     END
 
 	 -- Verifica se a Data_Teste é válida
     IF dbo.ValidarDataTeste(@Data_Teste) = 0
     BEGIN
-        PRINT 'Erro: Data do teste inválida (não pode estar no futuro)!';
+        RAISERROR('Data de Teste inválida! A Data de Teste não pode ser superior à Data de hoje e/ou tem de estar no formato yyyy-mm-dd !',16,1);
         RETURN;
     END
 
     -- Valida o Código do Resultado do Teste
     IF dbo.ValidarCodigoResultado(@Codigo_Resultado) = 0
     BEGIN
-        PRINT 'Aviso: Código do teste desconhecido!';
+        --PRINT 'Aviso: Código do teste desconhecido!';
         SET @Codigo_Resultado = '06';
     END
 
@@ -431,12 +432,13 @@ BEGIN
         Data_Teste = @Data_Teste
     WHERE ID_Teste = @ID_Teste;
 
-    PRINT 'Teste atualizado com sucesso!';
+    SET @Mensagem = 'Teste atualizado com sucesso!';
 END;
 GO
 
 CREATE PROCEDURE RemoverProduto
-    @ID_Produto INT
+    @ID_Produto INT,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -444,7 +446,7 @@ BEGIN
     -- Verifica se o Produto existe
     IF dbo.ProdutoExiste(@ID_Produto) = 0
     BEGIN
-        PRINT 'Erro: O produto não existe!';
+        RAISERROR('O produto não existe!',16,1);
         RETURN;
     END
 
@@ -454,12 +456,13 @@ BEGIN
     -- Remove o Produto
     DELETE FROM Produto WHERE ID_Produto = @ID_Produto;
 
-    PRINT 'Produto removido com sucesso!';
+    SET @Mensagem = 'Produto removido com sucesso!';
 END;
 GO
 
 CREATE PROCEDURE RemoverTeste
-    @ID_Teste INT
+    @ID_Teste INT,
+	@Mensagem NVARCHAR(100) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -467,39 +470,13 @@ BEGIN
     -- Verifica se o Teste existe
     IF dbo.TesteExiste(@ID_Teste) = 0
     BEGIN
-        PRINT 'Erro: O teste não existe!';
+		RAISERROR('O teste não existe!',16,1);
         RETURN;
     END
 
     -- Remove o Teste
     DELETE FROM Testes WHERE ID_Teste = @ID_Teste;
 
-    PRINT 'Teste removido com sucesso!';
+    SET @Mensagem = 'Teste removido com sucesso!';
 END;
 GO
-
-
------------------------------------------
-----------EXEC Stored Procedures---------
------------------------------------------
-
-EXEC InserirProduto 'aa124296', '2025-03-15', '12:30:00', 30; 
-
-EXEC InserirTeste 2, '02', '2025-03-15'; 
-
-EXEC AtualizarProduto 2, 'aa124296', '2025-03-02', '15:30:00', 30; 
-
-EXEC AtualizarTeste 1, 1, '03', '2024-03-15';
-
-EXEC ConsultarProdutos;
-
-EXEC ConsultarUmProduto 1;
-
-EXEC ConsultarTestesPorProduto 1;
-
-EXEC ConsultarTestes;
-
-EXEC RemoverProduto 1;
-
-EXEC RemoverTeste 1;
-
