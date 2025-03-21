@@ -26,9 +26,15 @@ namespace API.Interfaces
                 CommandType = CommandType.StoredProcedure
             };
 
+            // Garante que Hora_Producao tenha segundos
+            if (!TimeSpan.TryParseExact(produto.Hora_Producao, new[] { "hh\\:mm", "hh\\:mm\\:ss" }, null, out TimeSpan horaFormatada))
+            {
+                throw new ArgumentException("Formato inválido para Hora_Producao. Use HH:mm ou HH:mm:ss.");
+            }
+
             command.Parameters.AddWithValue("@Codigo_Peca", produto.Codigo_Peca);
             command.Parameters.AddWithValue("@Data_Producao", produto.Data_Producao);
-            command.Parameters.AddWithValue("@Hora_Producao", produto.Hora_Producao);
+            command.Parameters.AddWithValue("@Hora_Producao", horaFormatada);
             command.Parameters.AddWithValue("@Tempo_Producao", produto.Tempo_Producao);
             command.Parameters.Add(mensagem);
 
@@ -44,10 +50,16 @@ namespace API.Interfaces
                 CommandType = CommandType.StoredProcedure
             };
 
+            // Garante que Hora_Producao tenha segundos
+            if (!TimeSpan.TryParseExact(produto.Hora_Producao, new[] { "hh\\:mm", "hh\\:mm\\:ss" }, null, out TimeSpan horaFormatada))
+            {
+                throw new ArgumentException("Formato inválido para Hora_Producao. Use HH:mm ou HH:mm:ss.");
+            }
+
             command.Parameters.AddWithValue("@ID_Produto", produto.ID_Produto);
             command.Parameters.AddWithValue("@Codigo_Peca", produto.Codigo_Peca);
             command.Parameters.AddWithValue("@Data_Producao", produto.Data_Producao);
-            command.Parameters.AddWithValue("@Hora_Producao", produto.Hora_Producao);
+            command.Parameters.AddWithValue("@Hora_Producao", horaFormatada);
             command.Parameters.AddWithValue("@Tempo_Producao", produto.Tempo_Producao);
             command.Parameters.Add(mensagem);
 
@@ -87,7 +99,7 @@ namespace API.Interfaces
                     ID_Produto = reader.GetInt32(0),
                     Codigo_Peca = reader.GetString(1),
                     Data_Producao = DateOnly.FromDateTime(reader.GetDateTime(2)),
-                    Hora_Producao = reader.GetTimeSpan(3),
+                    Hora_Producao = reader.GetTimeSpan(3).ToString(@"hh\:mm\:ss"),
                     Tempo_Producao = reader.GetInt32(4)
                 });
             }
@@ -114,7 +126,7 @@ namespace API.Interfaces
                     ID_Produto = reader.GetInt32(0),
                     Codigo_Peca = reader.GetString(1),
                     Data_Producao = DateOnly.FromDateTime(reader.GetDateTime(2)),
-                    Hora_Producao = reader.GetTimeSpan(3),      
+                    Hora_Producao = reader.GetTimeSpan(3).ToString(@"hh\:mm\:ss"),
                     Tempo_Producao = reader.GetInt32(4)
                 };
             }
