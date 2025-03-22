@@ -35,15 +35,15 @@
             button_Inserir_Produto = new Button();
             panel1 = new Panel();
             text_Data_Teste = new TextBox();
-            label7 = new Label();
+            label_Data_Teste = new Label();
             text_ID_Produto = new TextBox();
-            label6 = new Label();
+            label_ID_Produto = new Label();
             text_Codigo_Resultado = new TextBox();
             text_Tempo_Producao = new TextBox();
             text_Codigo_Peca = new TextBox();
             text_Hora_Producao = new TextBox();
             text_Data_Producao = new TextBox();
-            label5 = new Label();
+            label_Codigo_Resultado = new Label();
             label_Tempo_Producao = new Label();
             label_Codigo_Peca = new Label();
             label_Hora_Producao = new Label();
@@ -56,6 +56,7 @@
             panel2.BackColor = SystemColors.ScrollBar;
             panel2.BackgroundImageLayout = ImageLayout.Center;
             panel2.BorderStyle = BorderStyle.Fixed3D;
+            panel2.Controls.Add(panel1);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(button_Inserir_Teste);
@@ -106,13 +107,14 @@
             button_Inserir_Produto.TabIndex = 41;
             button_Inserir_Produto.Text = "Inserir Produto";
             button_Inserir_Produto.UseVisualStyleBackColor = false;
+            button_Inserir_Produto.Click += button_Inserir_Produto_ClickAsync;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.GrayText;
-            panel1.Location = new Point(401, 136);
+            panel1.Location = new Point(294, -1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(5, 220);
+            panel1.Size = new Size(5, 280);
             panel1.TabIndex = 47;
             // 
             // text_Data_Teste
@@ -123,15 +125,15 @@
             text_Data_Teste.Size = new Size(126, 23);
             text_Data_Teste.TabIndex = 46;
             // 
-            // label7
+            // label_Data_Teste
             // 
-            label7.AutoSize = true;
-            label7.BackColor = SystemColors.ScrollBar;
-            label7.Location = new Point(430, 244);
-            label7.Name = "label7";
-            label7.Size = new Size(77, 15);
-            label7.TabIndex = 45;
-            label7.Text = "Data de Teste";
+            label_Data_Teste.AutoSize = true;
+            label_Data_Teste.BackColor = SystemColors.ScrollBar;
+            label_Data_Teste.Location = new Point(430, 244);
+            label_Data_Teste.Name = "label_Data_Teste";
+            label_Data_Teste.Size = new Size(77, 15);
+            label_Data_Teste.TabIndex = 45;
+            label_Data_Teste.Text = "Data de Teste";
             // 
             // text_ID_Produto
             // 
@@ -141,15 +143,15 @@
             text_ID_Produto.Size = new Size(126, 23);
             text_ID_Produto.TabIndex = 44;
             // 
-            // label6
+            // label_ID_Produto
             // 
-            label6.AutoSize = true;
-            label6.BackColor = SystemColors.ScrollBar;
-            label6.Location = new Point(430, 158);
-            label6.Name = "label6";
-            label6.Size = new Size(81, 15);
-            label6.TabIndex = 43;
-            label6.Text = "ID do Produto";
+            label_ID_Produto.AutoSize = true;
+            label_ID_Produto.BackColor = SystemColors.ScrollBar;
+            label_ID_Produto.Location = new Point(430, 158);
+            label_ID_Produto.Name = "label_ID_Produto";
+            label_ID_Produto.Size = new Size(81, 15);
+            label_ID_Produto.TabIndex = 43;
+            label_ID_Produto.Text = "ID do Produto";
             // 
             // text_Codigo_Resultado
             // 
@@ -191,15 +193,15 @@
             text_Data_Producao.Size = new Size(126, 23);
             text_Data_Producao.TabIndex = 36;
             // 
-            // label5
+            // label_Codigo_Resultado
             // 
-            label5.AutoSize = true;
-            label5.BackColor = SystemColors.ScrollBar;
-            label5.Location = new Point(430, 204);
-            label5.Name = "label5";
-            label5.Size = new Size(106, 15);
-            label5.TabIndex = 35;
-            label5.Text = "Resultado do Teste";
+            label_Codigo_Resultado.AutoSize = true;
+            label_Codigo_Resultado.BackColor = SystemColors.ScrollBar;
+            label_Codigo_Resultado.Location = new Point(430, 204);
+            label_Codigo_Resultado.Name = "label_Codigo_Resultado";
+            label_Codigo_Resultado.Size = new Size(106, 15);
+            label_Codigo_Resultado.TabIndex = 35;
+            label_Codigo_Resultado.Text = "Resultado do Teste";
             // 
             // label_Tempo_Producao
             // 
@@ -246,17 +248,16 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
             Controls.Add(text_Data_Teste);
-            Controls.Add(label7);
+            Controls.Add(label_Data_Teste);
             Controls.Add(text_ID_Produto);
-            Controls.Add(label6);
+            Controls.Add(label_ID_Produto);
             Controls.Add(text_Codigo_Resultado);
             Controls.Add(text_Tempo_Producao);
             Controls.Add(text_Codigo_Peca);
             Controls.Add(text_Hora_Producao);
             Controls.Add(text_Data_Producao);
-            Controls.Add(label5);
+            Controls.Add(label_Codigo_Resultado);
             Controls.Add(label_Tempo_Producao);
             Controls.Add(label_Codigo_Peca);
             Controls.Add(label_Hora_Producao);
@@ -277,9 +278,9 @@
         private Label label1;
         private Panel panel1;
         private TextBox text_Data_Teste;
-        private Label label7;
+        private Label label_Data_Teste;
         private TextBox text_ID_Produto;
-        private Label label6;
+        private Label label_ID_Produto;
         private Button button_Inserir_Teste;
         private Button button_Inserir_Produto;
         private TextBox text_Codigo_Resultado;
@@ -287,7 +288,7 @@
         private TextBox text_Codigo_Peca;
         private TextBox text_Hora_Producao;
         private TextBox text_Data_Producao;
-        private Label label5;
+        private Label label_Codigo_Resultado;
         private Label label_Tempo_Producao;
         private Label label_Codigo_Peca;
         private Label label_Hora_Producao;
