@@ -39,6 +39,8 @@
             timeProd = new TextBox();
             resultadoTeste = new TextBox();
             buttonNext = new Button();
+            label6 = new Label();
+            testDate = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -62,7 +64,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(50, 193);
+            label3.Location = new Point(50, 190);
             label3.Name = "label3";
             label3.Size = new Size(115, 20);
             label3.TabIndex = 2;
@@ -86,31 +88,31 @@
             label5.TabIndex = 4;
             label5.Text = "Resultado do teste";
             // 
-            // dataProd
+            // dateProd
             // 
             dateProd.Location = new Point(216, 54);
-            dateProd.Name = "dataProd";
+            dateProd.Name = "dateProd";
             dateProd.Size = new Size(144, 27);
             dateProd.TabIndex = 5;
             // 
-            // horaProd
+            // hourProd
             // 
             hourProd.Location = new Point(216, 122);
-            hourProd.Name = "horaProd";
+            hourProd.Name = "hourProd";
             hourProd.Size = new Size(144, 27);
             hourProd.TabIndex = 6;
             // 
-            // codigoPeca
+            // code
             // 
-            code.Location = new Point(216, 193);
-            code.Name = "codigoPeca";
+            code.Location = new Point(216, 190);
+            code.Name = "code";
             code.Size = new Size(144, 27);
             code.TabIndex = 7;
             // 
-            // tempoProd
+            // timeProd
             // 
             timeProd.Location = new Point(216, 250);
-            timeProd.Name = "tempoProd";
+            timeProd.Name = "timeProd";
             timeProd.Size = new Size(144, 27);
             timeProd.TabIndex = 8;
             // 
@@ -123,19 +125,37 @@
             // 
             // buttonNext
             // 
-            buttonNext.Location = new Point(598, 386);
+            buttonNext.Location = new Point(607, 448);
             buttonNext.Name = "buttonNext";
-            buttonNext.Size = new Size(94, 29);
-            buttonNext.TabIndex = 10;
+            buttonNext.Size = new Size(132, 50);
+            buttonNext.TabIndex = 12;
             buttonNext.Text = "Próximo";
             buttonNext.UseVisualStyleBackColor = true;
             buttonNext.Click += buttonNext_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(51, 387);
+            label6.Name = "label6";
+            label6.Size = new Size(99, 20);
+            label6.TabIndex = 10;
+            label6.Text = "Data do teste";
+            // 
+            // testDate
+            // 
+            testDate.Location = new Point(216, 384);
+            testDate.Name = "testDate";
+            testDate.Size = new Size(144, 27);
+            testDate.TabIndex = 11;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 532);
+            Controls.Add(testDate);
+            Controls.Add(label6);
             Controls.Add(buttonNext);
             Controls.Add(resultadoTeste);
             Controls.Add(timeProd);
@@ -166,5 +186,7 @@
         private TextBox timeProd;
         private TextBox resultadoTeste;
         private Button buttonNext;
+        private Label label6;
+        private TextBox testDate;
     }
 }
