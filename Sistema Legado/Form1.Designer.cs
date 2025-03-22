@@ -33,11 +33,12 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            dataProd = new TextBox();
-            horaProd = new TextBox();
-            codigoPeca = new TextBox();
-            tempoProd = new TextBox();
+            dateProd = new TextBox();
+            hourProd = new TextBox();
+            code = new TextBox();
+            timeProd = new TextBox();
             resultadoTeste = new TextBox();
+            buttonNext = new Button();
             SuspendLayout();
             // 
             // label1
@@ -87,31 +88,31 @@
             // 
             // dataProd
             // 
-            dataProd.Location = new Point(216, 54);
-            dataProd.Name = "dataProd";
-            dataProd.Size = new Size(144, 27);
-            dataProd.TabIndex = 5;
+            dateProd.Location = new Point(216, 54);
+            dateProd.Name = "dataProd";
+            dateProd.Size = new Size(144, 27);
+            dateProd.TabIndex = 5;
             // 
             // horaProd
             // 
-            horaProd.Location = new Point(216, 122);
-            horaProd.Name = "horaProd";
-            horaProd.Size = new Size(144, 27);
-            horaProd.TabIndex = 6;
+            hourProd.Location = new Point(216, 122);
+            hourProd.Name = "horaProd";
+            hourProd.Size = new Size(144, 27);
+            hourProd.TabIndex = 6;
             // 
             // codigoPeca
             // 
-            codigoPeca.Location = new Point(216, 193);
-            codigoPeca.Name = "codigoPeca";
-            codigoPeca.Size = new Size(144, 27);
-            codigoPeca.TabIndex = 7;
+            code.Location = new Point(216, 193);
+            code.Name = "codigoPeca";
+            code.Size = new Size(144, 27);
+            code.TabIndex = 7;
             // 
             // tempoProd
             // 
-            tempoProd.Location = new Point(216, 250);
-            tempoProd.Name = "tempoProd";
-            tempoProd.Size = new Size(144, 27);
-            tempoProd.TabIndex = 8;
+            timeProd.Location = new Point(216, 250);
+            timeProd.Name = "tempoProd";
+            timeProd.Size = new Size(144, 27);
+            timeProd.TabIndex = 8;
             // 
             // resultadoTeste
             // 
@@ -120,16 +121,27 @@
             resultadoTeste.Size = new Size(144, 27);
             resultadoTeste.TabIndex = 9;
             // 
+            // buttonNext
+            // 
+            buttonNext.Location = new Point(598, 386);
+            buttonNext.Name = "buttonNext";
+            buttonNext.Size = new Size(94, 29);
+            buttonNext.TabIndex = 10;
+            buttonNext.Text = "Próximo";
+            buttonNext.UseVisualStyleBackColor = true;
+            buttonNext.Click += buttonNext_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonNext);
             Controls.Add(resultadoTeste);
-            Controls.Add(tempoProd);
-            Controls.Add(codigoPeca);
-            Controls.Add(horaProd);
-            Controls.Add(dataProd);
+            Controls.Add(timeProd);
+            Controls.Add(code);
+            Controls.Add(hourProd);
+            Controls.Add(dateProd);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -148,10 +160,11 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private TextBox dataProd;
-        private TextBox horaProd;
-        private TextBox codigoPeca;
-        private TextBox tempoProd;
+        private TextBox dateProd;
+        private TextBox hourProd;
+        private TextBox code;
+        private TextBox timeProd;
         private TextBox resultadoTeste;
+        private Button buttonNext;
     }
 }
