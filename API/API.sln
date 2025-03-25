@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API.csproj", "{B3889
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sistema Legado", "..\Sistema Legado\Sistema Legado.csproj", "{1CD552D4-D987-4281-833B-90E8AC44131A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceAPI", "..\InterfaceAPI\InterfaceAPI.csproj", "{A3DAC926-A528-4977-84D2-BFDD7A3DA08F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1CD552D4-D987-4281-833B-90E8AC44131A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD552D4-D987-4281-833B-90E8AC44131A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD552D4-D987-4281-833B-90E8AC44131A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DAC926-A528-4977-84D2-BFDD7A3DA08F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DAC926-A528-4977-84D2-BFDD7A3DA08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DAC926-A528-4977-84D2-BFDD7A3DA08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DAC926-A528-4977-84D2-BFDD7A3DA08F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
