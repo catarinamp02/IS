@@ -40,7 +40,12 @@ namespace InterfaceAPI
 
                 if (response.IsSuccessStatusCode)
                 {
+                    await CarregarProdutosNoComboBox();
+                    comb_Cod_Produto.SelectedItem = comb_Cod_Produto.Items
+                    .Cast<KeyValuePair<int, string>>()
+                    .FirstOrDefault(p => p.Value == text_Codigo_Peca.Text);
                     MessageBox.Show(responseContent, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //LimparCampos();
                 }
                 else
                 {
@@ -188,6 +193,7 @@ namespace InterfaceAPI
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show(responseContent, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimparCampos();
                 }
                 else
                 {
@@ -224,6 +230,16 @@ namespace InterfaceAPI
             {
                 MessageBox.Show($"Erro inesperado: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void LimparCampos()
+        {
+            text_Codigo_Peca.Text = "";
+            text_Data_Producao.Text = "";
+            text_Hora_Producao.Text = "";
+            text_Tempo_Producao.Text = "";
+            text_Codigo_Resultado.Text = "";
+            text_Data_Teste.Text = "";
+            comb_Cod_Produto.SelectedIndex = -1; // Remove a seleção da ComboBox
         }
     }
 }
