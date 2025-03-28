@@ -11,7 +11,8 @@ namespace Sistema_Legado
         public Form1()
         {
             InitializeComponent();
-
+            this.StartPosition = FormStartPosition.Manual;
+            Location = new System.Drawing.Point(50, 100);
             randomDataGenerator();
         }
 

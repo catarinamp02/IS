@@ -10,6 +10,8 @@ namespace InterfaceAPI
         public Form()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            Location = new System.Drawing.Point(900, 100);
             _ = CarregarProdutosNoComboBox();
         }
 
