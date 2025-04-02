@@ -47,6 +47,8 @@ while exists(Pattern("button.png").similar(0.32)):
        break
     if exists("1743328691553.png"):
         break
+    if exists(Pattern("1743631272069.png").similar(0.77)):
+        click("1743631286806.png")
 
     #Resultado do teste
     click(Pattern("1743328128381.png").similar(0.88).targetOffset(78,0))
@@ -73,6 +75,8 @@ while exists(Pattern("button.png").similar(0.32)):
         break
     if exists("1743328691553.png"):
         break
+    if exists(Pattern("1743631272069.png").similar(0.77)):
+        click("1743631286806.png")
 
     #Proxima peça
     click("1743328278855.png")
