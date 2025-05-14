@@ -9,9 +9,9 @@ using var channel = await connection.CreateChannelAsync();
 
 await channel.ExchangeDeclareAsync(exchange: "productionLine", type: ExchangeType.Topic);
 
-string routingKey = "dados.producao";
+string routingKey;
 
-Random rand = new Random();
+Random rand = new();
 
 while (true)
 {
@@ -22,19 +22,19 @@ while (true)
     //converter JSON para bytes
     var body = Encoding.UTF8.GetBytes(message);
 
-    ////publicar no tópico em função do resultado do teste
-    //if (peca.resultadoTeste >= 2 && peca.resultadoTeste <= 5)
-    //{
-    //    routingKey = "dados.producao.falha";
-    //}
-    //else if (peca.resultadoTeste == 1)
-    //{
-    //    routingKey = "dados.producao.sucesso";
-    //}
-    //else
-    //{
-    //    routingKey = "dados.producao.desconhecido";
-    //}
+    //publicar no tópico em função do resultado do teste
+    if (peca.resultadoTeste >= 2 && peca.resultadoTeste <= 5)
+    {
+        routingKey = "dados.producao.falha";
+    }
+    else if (peca.resultadoTeste == 1)
+    {
+        routingKey = "dados.producao.sucesso";
+    }
+    else
+    {
+        routingKey = "dados.producao.desconhecido";
+    }
 
 
     await channel.BasicPublishAsync(exchange: "productionLine", routingKey: routingKey, body: body);
