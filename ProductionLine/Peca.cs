@@ -13,22 +13,43 @@ namespace ProductionLine
         public string codigo { get; set; }
         public int tempoProd { get; set; }
         public int resultadoTeste { get; set; }
+        public string descricaoTeste { get; set; }
         public DateOnly datateste { get; set; }
 
         public static readonly Random random = new Random();
 
         public Peca()
         {
-            dataProd = randomDate();
-            horaProd = randomTime(dataProd);
+            dataProd = RandomDate();
+            horaProd = RandomTime(dataProd);
             codigo = Code();
             tempoProd = random.Next(10, 51);
             resultadoTeste = random.Next(1, 7);
-            datateste = randomTestDate(dataProd);
+            descricaoTeste = TestDescription(resultadoTeste);
+            datateste = RandomTestDate(dataProd);
 
         }
 
-        public DateOnly randomDate()
+        public string TestDescription(int resultadoTeste)
+        { 
+
+            switch (resultadoTeste)
+            {
+                case 1:
+                    return "OK";
+                case 2:
+                    return "Falha na inspeção visual";
+                case 3:
+                    return "Falha na inspeção de resistência";
+                case 4:
+                    return "Falha na inspeção de dimensões";
+                case 5:
+                    return "Falha na inspeção de estanquiedade";
+                default:
+                    return "Desconhecido";
+            }
+        }
+        public DateOnly RandomDate()
         {
             int month;
             int day;
@@ -53,12 +74,12 @@ namespace ProductionLine
                 day = random.Next(1, DateTime.DaysInMonth(year, month) + 1);
             }
 
-            DateOnly date = new DateOnly(year, month, day);
+            DateOnly date = new(year, month, day);
 
             return date;
         }
 
-        public TimeOnly randomTime(DateOnly productionDate)
+        public TimeOnly RandomTime(DateOnly productionDate)
         {
             int hour = random.Next(0, 24);
 
@@ -73,7 +94,7 @@ namespace ProductionLine
                 seconds = random.Next(1, DateTime.Now.Second + 1);
             }
 
-            TimeOnly time = new TimeOnly(hour, minute, seconds);
+            TimeOnly time = new(hour, minute, seconds);
 
             return time;
         }
@@ -90,7 +111,7 @@ namespace ProductionLine
 
         }
 
-        public DateOnly randomTestDate(DateOnly productionDate)
+        public DateOnly RandomTestDate(DateOnly productionDate)
         {
 
             int prodYear = productionDate.Year;

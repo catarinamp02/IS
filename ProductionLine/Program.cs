@@ -41,7 +41,10 @@ while (true)
 
     Console.WriteLine($" [x] Sent '{routingKey}':'{message}'");
 
+    //Tempo de produção em ms
+    int tempo = peca.tempoProd * 1000;
+
     //simular tempo de produção
-    Thread.Sleep(rand.Next(5000, 21000));
+    Thread.Sleep(tempo);
 
 }

@@ -13,6 +13,7 @@ namespace GUI_Falhas
         public string codigo { get; set; }
         public int tempoProd { get; set; }
         public int resultadoTeste { get; set; }
+        public string descricaoTeste { get; set; }
         public DateOnly datateste { get; set; }
     }
 }

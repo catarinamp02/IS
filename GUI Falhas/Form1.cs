@@ -57,6 +57,7 @@ namespace GUI_Falhas
                     Codigo.Text = peca.codigo;
                     TempoProd.Text = peca.tempoProd.ToString();
                     ResultadoTeste.Text = peca.resultadoTeste.ToString();
+                    DescricaoTeste.Text = peca.descricaoTeste.ToString();
                     DataTeste.Text = peca.datateste.ToString();
                 });
 
