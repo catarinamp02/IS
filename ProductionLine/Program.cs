@@ -39,7 +39,7 @@ while (true)
 
     await channel.BasicPublishAsync(exchange: "productionLine", routingKey: routingKey, body: body);
 
-    Console.WriteLine($" [x] Sent '{routingKey}':'{message}'");
+    Console.WriteLine($"Sent '{routingKey}':'{message}'");
 
     //Tempo de produção em ms
     int tempo = peca.tempoProd * 1000;

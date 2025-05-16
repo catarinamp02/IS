@@ -26,7 +26,7 @@ namespace GUI_Falhas
 
             await channel.ExchangeDeclareAsync(exchange: "productionLine", type: ExchangeType.Topic);
 
-            //Fila para peça com falhas
+            //Fila para peça com falha
             await channel.QueueDeclareAsync(
                 queue: "FalhasProd",
                 durable: true,
