@@ -10,7 +10,7 @@ namespace DataTransmitter
     {
         public int iD_Teste {  get; set; }
         public int iD_Produto {  get; set; }
-        public int codigo_Resultado { get; set; }
+        public string codigo_Resultado { get; set; }
         public string data_Teste { get; set; }
     }
 }

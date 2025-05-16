@@ -187,7 +187,17 @@ namespace ProductionLine
 
                 if (testMonth == prodMonth)
                 {
-                    testDay = random.Next(prodDay, DateTime.Now.Day + 1);
+                    int minDay = prodDay;
+                    int maxDay = DateTime.Now.Day;
+
+                    if (minDay > maxDay)
+                    {
+                        // Garante que não há exceção
+                        minDay = maxDay;
+                    }
+
+                    testDay = random.Next(minDay, maxDay + 1);
+
                 }
                 else
                 {

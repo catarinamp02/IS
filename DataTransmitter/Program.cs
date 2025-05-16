@@ -28,7 +28,7 @@ var consumer = new AsyncEventingBasicConsumer(channel);
 using var client = new HttpClient();
 client.BaseAddress = new Uri("https://localhost:7289");
 
-consumer.ReceivedAsync += (model, ea) =>
+consumer.ReceivedAsync += async (model, ea) =>
 {
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
@@ -37,11 +37,9 @@ consumer.ReceivedAsync += (model, ea) =>
 
     Peca peca = JsonSerializer.Deserialize<Peca>(message);
 
-    PostProduto(peca);
+    await PostProduto(peca);
 
-    PostTeste(peca);
-
-    return Task.CompletedTask;
+    await PostTeste(peca);
    
 };
 
@@ -65,8 +63,7 @@ async Task PostProduto (Peca peca)
 
         var contentProduto = new StringContent(jsonProduto, Encoding.UTF8, "application/json");
 
-
-        Console.WriteLine(jsonProduto);
+        Console.WriteLine($"Produto: {jsonProduto}\n");
 
         //Fazer POST do produto
         var respostaProduto = await client.PostAsync("/api/Produtos", contentProduto);
@@ -74,6 +71,7 @@ async Task PostProduto (Peca peca)
         string responseContent = await respostaProduto.Content.ReadAsStringAsync();
 
         Console.WriteLine(await respostaProduto.Content.ReadAsStringAsync());
+        Console.WriteLine("\n");
 
 }
 
@@ -83,7 +81,7 @@ async Task PostTeste (Peca peca)
         Teste teste = new Teste
         {
             iD_Produto = await getIdProduto(),
-            codigo_Resultado = peca.resultadoTeste,
+            codigo_Resultado = peca.resultadoTeste.ToString(),
             data_Teste = peca.datateste,
         };
 
@@ -91,9 +89,17 @@ async Task PostTeste (Peca peca)
         var jsonTeste = JsonSerializer.Serialize(teste);
         var contentTeste = new StringContent(jsonTeste, Encoding.UTF8, "application/json");
 
+        Console.WriteLine($"Teste: {jsonTeste}\n");
+
         //Fazer POST do teste
         var respostaTeste = await client.PostAsync("/api/Testes", contentTeste);
-    }
+
+        string responseContent = await respostaTeste.Content.ReadAsStringAsync();
+
+        Console.WriteLine(await respostaTeste.Content.ReadAsStringAsync());
+
+        Console.WriteLine("\n");
+}
     async Task<int> getIdProduto()
     {
         try
