@@ -8,13 +8,13 @@ namespace ProductionLine
 {
     internal class Peca
     {
-        public DateOnly dataProd { get; set; }
-        public TimeOnly horaProd { get; set; }
+        public string dataProd { get; set; }
+        public string horaProd { get; set; }
         public string codigo { get; set; }
         public int tempoProd { get; set; }
         public int resultadoTeste { get; set; }
         public string descricaoTeste { get; set; }
-        public DateOnly datateste { get; set; }
+        public string datateste { get; set; }
 
         public static readonly Random random = new Random();
 
@@ -49,7 +49,7 @@ namespace ProductionLine
                     return "Desconhecido";
             }
         }
-        public DateOnly RandomDate()
+        public string RandomDate()
         {
             int month;
             int day;
@@ -74,12 +74,38 @@ namespace ProductionLine
                 day = random.Next(1, DateTime.DaysInMonth(year, month) + 1);
             }
 
-            DateOnly date = new(year, month, day);
-
-            return date;
+            return dateFormater(year, month, day);
         }
 
-        public TimeOnly RandomTime(DateOnly productionDate)
+        public string dateFormater(int year, int month, int day)
+        {
+            string formatedMonth;
+            string formatedDay;
+
+
+            if (month < 10)
+            {
+                formatedMonth = "0" + month;
+            }
+            else
+            {
+                formatedMonth = month.ToString();
+            }
+
+            if (day < 10)
+            {
+                formatedDay = "0" + day;
+            }
+            else
+            {
+                formatedDay = day.ToString();
+            }
+
+            return year.ToString() + "-" + formatedMonth + "-" + formatedDay;
+        }
+
+
+        public string RandomTime(string productionDate)
         {
             int hour = random.Next(0, 24);
 
@@ -87,16 +113,44 @@ namespace ProductionLine
 
             int seconds = random.Next(0, 60);
 
-            if (DateOnly.FromDateTime(DateTime.Now) == productionDate)
+            if (DateTime.Now == DateTime.Parse(productionDate))
             {
                 hour = random.Next(1, DateTime.Now.Hour + 1);
                 minute = random.Next(1, DateTime.Now.Minute + 1);
                 seconds = random.Next(1, DateTime.Now.Second + 1);
             }
 
-            TimeOnly time = new(hour, minute, seconds);
 
-            return time;
+            string formatedHour;
+            string formatedMinute;
+            string formatedSecond;
+
+            if (hour < 10)
+            {
+                formatedHour = "0" + hour;
+            }
+            else
+            {
+                formatedHour = hour.ToString();
+            }
+            if (minute < 10)
+            {
+                formatedMinute = "0" + minute;
+            }
+            else
+            {
+                formatedMinute = minute.ToString();
+            }
+            if (seconds < 10)
+            {
+                formatedSecond = "0" + seconds;
+            }
+            else
+            {
+                formatedSecond = seconds.ToString();
+            }
+
+            return formatedHour + ":" + formatedMinute + ":" + formatedSecond;
         }
 
         public string Code()
@@ -111,14 +165,15 @@ namespace ProductionLine
 
         }
 
-        public DateOnly RandomTestDate(DateOnly productionDate)
+        public string RandomTestDate(string productionDate)
         {
+            string[] date = productionDate.Split("-");
 
-            int prodYear = productionDate.Year;
+            int prodYear = int.Parse(date[0]);
 
-            int prodMonth = productionDate.Month;
+            int prodMonth = int.Parse(date[1]);
 
-            int prodDay = productionDate.Day;
+            int prodDay = int.Parse(date[2]);
 
             int testYear = prodYear;
 
@@ -148,9 +203,7 @@ namespace ProductionLine
 
             }
 
-            DateOnly testDate = new DateOnly(testYear, testMonth, testDay);
-
-            return testDate;
+            return dateFormater(prodYear, testMonth, testDay);
         }
     }
 

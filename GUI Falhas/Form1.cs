@@ -52,13 +52,13 @@ namespace GUI_Falhas
                 // Atualiza o componente da UI com thread-safe
                 this.Invoke((MethodInvoker)delegate
                 {
-                    DataProd.Text = peca.dataProd.ToString();
-                    HoraProd.Text = peca.horaProd.ToString();
+                    DataProd.Text = peca.dataProd;
+                    HoraProd.Text = peca.horaProd;
                     Codigo.Text = peca.codigo;
                     TempoProd.Text = peca.tempoProd.ToString();
                     ResultadoTeste.Text = peca.resultadoTeste.ToString();
-                    DescricaoTeste.Text = peca.descricaoTeste.ToString();
-                    DataTeste.Text = peca.datateste.ToString();
+                    DescricaoTeste.Text = peca.descricaoTeste;
+                    DataTeste.Text = peca.datateste;
                 });
 
                 return Task.CompletedTask;

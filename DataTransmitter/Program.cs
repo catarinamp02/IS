@@ -3,7 +3,6 @@ using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 
 var factory = new ConnectionFactory { HostName = "localhost" };
@@ -34,7 +33,7 @@ consumer.ReceivedAsync += (model, ea) =>
     var body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
 
-    Console.WriteLine($" [x] Received:'{message}'");
+    Console.WriteLine($"Received:'{message}'\n");
 
     Peca peca = JsonSerializer.Deserialize<Peca>(message);
 
@@ -43,30 +42,42 @@ consumer.ReceivedAsync += (model, ea) =>
     PostTeste(peca);
 
     return Task.CompletedTask;
+   
 };
 
 await channel.BasicConsumeAsync(queue: "DadosProd", autoAck: true, consumer: consumer);
 
-    async Task PostProduto (Peca peca)
+await Task.Delay(-1);
+
+async Task PostProduto (Peca peca)
     {
         //Criar objeto produto com base nos dados recebidos
         Produto produto = new Produto
         {
             codigo_Peca = peca.codigo,
-            data_Producao = peca.dataProd,
-            hora_Producao = peca.horaProd,
+            data_Producao = peca.dataProd.ToString(),
+            hora_Producao = peca.horaProd.ToString(),
             tempo_Producao = peca.tempoProd,
         };
 
-        //Converter em JSON
+    //Converter em JSON
         var jsonProduto = JsonSerializer.Serialize(produto);
+
         var contentProduto = new StringContent(jsonProduto, Encoding.UTF8, "application/json");
 
-        //Fazer POST do produto
-        var respostaProduto = await client.PostAsync("/api/Produto", contentProduto);
-    }
 
-    async Task PostTeste (Peca peca)
+        Console.WriteLine(jsonProduto);
+
+        //Fazer POST do produto
+        var respostaProduto = await client.PostAsync("/api/Produtos", contentProduto);
+
+        string responseContent = await respostaProduto.Content.ReadAsStringAsync();
+
+        Console.WriteLine(await respostaProduto.Content.ReadAsStringAsync());
+
+}
+
+async Task PostTeste (Peca peca)
     {
         //Criar objeto Teste com base nos dados recebidos
         Teste teste = new Teste
@@ -85,12 +96,9 @@ await channel.BasicConsumeAsync(queue: "DadosProd", autoAck: true, consumer: con
     }
     async Task<int> getIdProduto()
     {
-        var client = new HttpClient();
-        client.BaseAddress = new Uri("https://localhost:7289");
-
         try
         {
-            var resposta = await client.GetAsync("/api/produtos");
+            var resposta = await client.GetAsync("/api/Produtos");
 
             //Verificar se a resposta foi de sucesso
             resposta.EnsureSuccessStatusCode();
