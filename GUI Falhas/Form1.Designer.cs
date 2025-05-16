@@ -148,9 +148,9 @@ namespace GUI_Falhas
             // 
             // DescricaoTeste
             // 
-            DescricaoTeste.Location = new Point(458, 316);
+            DescricaoTeste.Location = new Point(441, 316);
             DescricaoTeste.Name = "DescricaoTeste";
-            DescricaoTeste.Size = new Size(125, 27);
+            DescricaoTeste.Size = new Size(320, 27);
             DescricaoTeste.TabIndex = 12;
             // 
             // DataTeste
