@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI Falhas", "..\GUI Falhas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransmitter", "..\DataTransmitter\DataTransmitter.csproj", "{46F86DB7-AEBB-4687-8BAE-77E1B54EDD78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_SOAP", "..\API_SOAP\API_SOAP.csproj", "{6E7C5132-49C3-4614-B45C-8F6D93AC03B0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{46F86DB7-AEBB-4687-8BAE-77E1B54EDD78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46F86DB7-AEBB-4687-8BAE-77E1B54EDD78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46F86DB7-AEBB-4687-8BAE-77E1B54EDD78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E7C5132-49C3-4614-B45C-8F6D93AC03B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E7C5132-49C3-4614-B45C-8F6D93AC03B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E7C5132-49C3-4614-B45C-8F6D93AC03B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E7C5132-49C3-4614-B45C-8F6D93AC03B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
