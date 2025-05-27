@@ -9,44 +9,13 @@
 //------------------------------------------------------------------------------
 
 namespace ClienteSOAP.FinanceiroWS {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TimeSpan", Namespace="http://tempuri.org/")]
-    [System.SerializableAttribute()]
-    public partial class TimeSpan : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FinanceiroWS.FinanceiroServiceSoap")]
     public interface FinanceiroServiceSoap {
         
-        // CODEGEN: Generating message contract since element name horaInicio from namespace http://tempuri.org/ is not marked nillable
+        // CODEGEN: Generating message contract since element name dataInicio from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCustoTotalPeriodo", ReplyAction="*")]
         ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoResponse GetCustoTotalPeriodo(ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest request);
         
@@ -77,22 +46,22 @@ namespace ClienteSOAP.FinanceiroWS {
     [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class GetCustoTotalPeriodoRequestBody {
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
-        public System.DateTime dataInicio;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string dataInicio;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
-        public ClienteSOAP.FinanceiroWS.TimeSpan horaInicio;
+        public string horaInicio;
         
-        [System.Runtime.Serialization.DataMemberAttribute(Order=2)]
-        public System.DateTime dataFim;
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string dataFim;
         
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
-        public ClienteSOAP.FinanceiroWS.TimeSpan horaFim;
+        public string horaFim;
         
         public GetCustoTotalPeriodoRequestBody() {
         }
         
-        public GetCustoTotalPeriodoRequestBody(System.DateTime dataInicio, ClienteSOAP.FinanceiroWS.TimeSpan horaInicio, System.DateTime dataFim, ClienteSOAP.FinanceiroWS.TimeSpan horaFim) {
+        public GetCustoTotalPeriodoRequestBody(string dataInicio, string horaInicio, string dataFim, string horaFim) {
             this.dataInicio = dataInicio;
             this.horaInicio = horaInicio;
             this.dataFim = dataFim;
@@ -166,7 +135,7 @@ namespace ClienteSOAP.FinanceiroWS {
             return base.Channel.GetCustoTotalPeriodo(request);
         }
         
-        public decimal GetCustoTotalPeriodo(System.DateTime dataInicio, ClienteSOAP.FinanceiroWS.TimeSpan horaInicio, System.DateTime dataFim, ClienteSOAP.FinanceiroWS.TimeSpan horaFim) {
+        public decimal GetCustoTotalPeriodo(string dataInicio, string horaInicio, string dataFim, string horaFim) {
             ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest();
             inValue.Body = new ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequestBody();
             inValue.Body.dataInicio = dataInicio;
@@ -182,7 +151,7 @@ namespace ClienteSOAP.FinanceiroWS {
             return base.Channel.GetCustoTotalPeriodoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoResponse> GetCustoTotalPeriodoAsync(System.DateTime dataInicio, ClienteSOAP.FinanceiroWS.TimeSpan horaInicio, System.DateTime dataFim, ClienteSOAP.FinanceiroWS.TimeSpan horaFim) {
+        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoResponse> GetCustoTotalPeriodoAsync(string dataInicio, string horaInicio, string dataFim, string horaFim) {
             ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest();
             inValue.Body = new ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequestBody();
             inValue.Body.dataInicio = dataInicio;

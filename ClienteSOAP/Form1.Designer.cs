@@ -36,27 +36,31 @@
             // 
             // cbMetodo
             // 
+            this.cbMetodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMetodo.FormattingEnabled = true;
             this.cbMetodo.Location = new System.Drawing.Point(47, 34);
             this.cbMetodo.Name = "cbMetodo";
-            this.cbMetodo.Size = new System.Drawing.Size(121, 21);
+            this.cbMetodo.Size = new System.Drawing.Size(201, 21);
             this.cbMetodo.TabIndex = 0;
+            this.cbMetodo.SelectedIndexChanged += new System.EventHandler(this.cbMetodo_SelectedIndexChanged);
             // 
             // pnlParametros
             // 
+            this.pnlParametros.AutoScroll = true;
             this.pnlParametros.Location = new System.Drawing.Point(47, 79);
             this.pnlParametros.Name = "pnlParametros";
-            this.pnlParametros.Size = new System.Drawing.Size(282, 258);
+            this.pnlParametros.Size = new System.Drawing.Size(314, 319);
             this.pnlParametros.TabIndex = 1;
             // 
             // btnExecutar
             // 
-            this.btnExecutar.Location = new System.Drawing.Point(200, 34);
+            this.btnExecutar.Location = new System.Drawing.Point(254, 34);
             this.btnExecutar.Name = "btnExecutar";
             this.btnExecutar.Size = new System.Drawing.Size(75, 23);
             this.btnExecutar.TabIndex = 2;
             this.btnExecutar.Text = "Selecionar";
             this.btnExecutar.UseVisualStyleBackColor = true;
+            this.btnExecutar.Click += new System.EventHandler(this.btnExecutar_Click);
             // 
             // textResultado
             // 
@@ -79,6 +83,7 @@
             this.Controls.Add(this.cbMetodo);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
         }
@@ -89,6 +94,8 @@
         private System.Windows.Forms.Panel pnlParametros;
         private System.Windows.Forms.Button btnExecutar;
         private System.Windows.Forms.RichTextBox textResultado;
+
+
     }
 }
 

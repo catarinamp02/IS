@@ -23,17 +23,38 @@ namespace API_SOAP
     public class FinanceiroService : System.Web.Services.WebService
     {
         private string connStr = ConfigurationManager.ConnectionStrings["Contabilidade"].ConnectionString;
+        //[WebMethod]
+        //public decimal GetCustoTotalPeriodo(DateTime dataInicio, TimeSpan horaInicio, DateTime dataFim, TimeSpan horaFim)
+        //{
+        //    using (SqlConnection conn = new SqlConnection(connStr))
+        //    {
+        //        SqlCommand cmd = new SqlCommand("CustoTotalPeriodo", conn);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.AddWithValue("@DataInicio", dataInicio);
+        //        cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
+        //        cmd.Parameters.AddWithValue("@DataFim", dataFim);
+        //        cmd.Parameters.AddWithValue("@HoraFim", horaFim);
+
+        //        conn.Open();
+        //        var result = cmd.ExecuteScalar();
+        //        return result != DBNull.Value ? Convert.ToDecimal(result) : 0m;
+        //    }
+        //}
         [WebMethod]
-        public decimal GetCustoTotalPeriodo(DateTime dataInicio, TimeSpan horaInicio, DateTime dataFim, TimeSpan horaFim)
+        public decimal GetCustoTotalPeriodo(string dataInicio, string horaInicio, string dataFim, string horaFim)
         {
+            DateTime di = DateTime.Parse($"{dataInicio} {horaInicio}");
+            DateTime df = DateTime.Parse($"{dataFim} {horaFim}");
+
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 SqlCommand cmd = new SqlCommand("CustoTotalPeriodo", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@DataInicio", dataInicio);
-                cmd.Parameters.AddWithValue("@HoraInicio", horaInicio);
-                cmd.Parameters.AddWithValue("@DataFim", dataFim);
-                cmd.Parameters.AddWithValue("@HoraFim", horaFim);
+
+                cmd.Parameters.AddWithValue("@DataInicio", di.Date);
+                cmd.Parameters.AddWithValue("@HoraInicio", di.TimeOfDay);
+                cmd.Parameters.AddWithValue("@DataFim", df.Date);
+                cmd.Parameters.AddWithValue("@HoraFim", df.TimeOfDay);
 
                 conn.Open();
                 var result = cmd.ExecuteScalar();
