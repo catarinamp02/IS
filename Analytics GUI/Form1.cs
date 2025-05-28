@@ -3,7 +3,6 @@ using RabbitMQ.Stream.Client.Reliable;
 using System.Data;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace Analytics_GUI
 {

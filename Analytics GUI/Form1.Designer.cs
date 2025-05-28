@@ -36,6 +36,7 @@
             label4 = new Label();
             TextBox_total_pecas_OK = new TextBox();
             textBox_Tempo_Medio = new TextBox();
+            label5 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -83,7 +84,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(24, 322);
+            label4.Location = new Point(24, 325);
             label4.Name = "label4";
             label4.Size = new Size(191, 20);
             label4.TabIndex = 5;
@@ -104,11 +105,21 @@
             textBox_Tempo_Medio.Size = new Size(125, 27);
             textBox_Tempo_Medio.TabIndex = 7;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(524, 329);
+            label5.Name = "label5";
+            label5.Size = new Size(72, 20);
+            label5.TabIndex = 8;
+            label5.Text = "segundos";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label5);
             Controls.Add(textBox_Tempo_Medio);
             Controls.Add(TextBox_total_pecas_OK);
             Controls.Add(label4);
@@ -133,5 +144,6 @@
         private Label label4;
         private TextBox TextBox_total_pecas_OK;
         private TextBox textBox_Tempo_Medio;
+        private Label label5;
     }
 }
