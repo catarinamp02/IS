@@ -38,7 +38,7 @@
             // 
             this.cbMetodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMetodo.FormattingEnabled = true;
-            this.cbMetodo.Location = new System.Drawing.Point(47, 34);
+            this.cbMetodo.Location = new System.Drawing.Point(61, 52);
             this.cbMetodo.Name = "cbMetodo";
             this.cbMetodo.Size = new System.Drawing.Size(201, 21);
             this.cbMetodo.TabIndex = 0;
@@ -49,12 +49,12 @@
             this.pnlParametros.AutoScroll = true;
             this.pnlParametros.Location = new System.Drawing.Point(47, 79);
             this.pnlParametros.Name = "pnlParametros";
-            this.pnlParametros.Size = new System.Drawing.Size(314, 319);
+            this.pnlParametros.Size = new System.Drawing.Size(234, 258);
             this.pnlParametros.TabIndex = 1;
             // 
             // btnExecutar
             // 
-            this.btnExecutar.Location = new System.Drawing.Point(254, 34);
+            this.btnExecutar.Location = new System.Drawing.Point(329, 185);
             this.btnExecutar.Name = "btnExecutar";
             this.btnExecutar.Size = new System.Drawing.Size(75, 23);
             this.btnExecutar.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             // textResultado
             // 
-            this.textResultado.Location = new System.Drawing.Point(473, 79);
+            this.textResultado.Location = new System.Drawing.Point(445, 79);
             this.textResultado.Name = "textResultado";
             this.textResultado.ReadOnly = true;
             this.textResultado.Size = new System.Drawing.Size(280, 258);

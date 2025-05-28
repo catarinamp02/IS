@@ -19,13 +19,6 @@ namespace ClienteSOAP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //cbMetodo.Items.Add("GetCustoTotalPeriodo");
-            //cbMetodo.Items.Add("GetLucroTotalPeriodo");
-            //cbMetodo.Items.Add("GetPrejuizoPorPecaPeriodo");
-            //cbMetodo.Items.Add("GetPecaComMaiorPrejuizo");
-            //cbMetodo.Items.Add("GetFinanceiroPorPeca");
-            //cbMetodo.SelectedIndex = 0;
-
             foreach (var item in metodosSOAP.Keys)
                 cbMetodo.Items.Add(item);
 
@@ -36,37 +29,41 @@ namespace ClienteSOAP
         // Dicionário dos nomes dos métodos SOAP 
         private Dictionary<string, string> metodosSOAP = new Dictionary<string, string>
         {
-            { "Custo Total num Período", "GetCustoTotalPeriodoTexto" },
-            { "Lucro Total num Período", "GetLucroTotalPeriodoTexto" },
-            { "Prejuízo por Peça num Período", "GetPrejuizoPorPecaPeriodoTexto" },
+            { "Custo Total num Período", "GetCustoTotalPeriodo" },
+            { "Lucro Total num Período", "GetLucroTotalPeriodo" },
+            { "Prejuízo por Peça num Período", "GetPrejuizoPorPecaPeriodo" },
             { "Peça com Maior Prejuízo", "GetPecaComMaiorPrejuizo" },
             { "Dados Financeiros por Peça", "GetFinanceiroPorPeca" }
         };
 
         // Métodos auxiliares para adicionar campos de data e hora
-        private void AddDateTimeField(string labelText, string controlName, int top)
+        private void AddDateTimeField(string label, string name, ref int posY)
         {
-            pnlParametros.Controls.Add(new Label() { Text = labelText, Top = top, Left = 10 });
+            pnlParametros.Controls.Add(new Label() { Text = label, Top = posY, Left = 10 });
+            posY += 20;
             pnlParametros.Controls.Add(new DateTimePicker()
             {
-                Name = controlName,
+                Name = name,
                 Format = DateTimePickerFormat.Short,
-                Top = top + 20,
+                Top = posY + 5,
                 Left = 10
             });
+            posY += 35;
         }
 
-        private void AddTimeField(string labelText, string controlName, int top)
+        private void AddTimeField(string label, string name, ref int posY)
         {
-            pnlParametros.Controls.Add(new Label() { Text = labelText, Top = top, Left = 10 });
+            pnlParametros.Controls.Add(new Label() { Text = label, Top = posY, Left = 10 });
+            posY += 20;
             pnlParametros.Controls.Add(new DateTimePicker()
             {
-                Name = controlName,
+                Name = name,
                 Format = DateTimePickerFormat.Time,
                 ShowUpDown = true,
-                Top = top + 20,
+                Top = posY + 5,
                 Left = 10
             });
+            posY += 35;
         }
 
 
@@ -77,28 +74,31 @@ namespace ClienteSOAP
         private TimeSpan GetTime(string controlName) =>
             ((DateTimePicker)pnlParametros.Controls[controlName]).Value.TimeOfDay;
 
-
+   
 
         //evento para combobox de metodos
         private void cbMetodo_SelectedIndexChanged(object sender, EventArgs e)
         {
             pnlParametros.Controls.Clear();
-            string metodo = cbMetodo.SelectedItem.ToString();
+            int posY = 30;
+            string nome = cbMetodo.SelectedItem.ToString();
+            string metodo = metodosSOAP[nome];
 
             if (metodo.Contains("Periodo"))
             {
-                // 4 DateTimePickers: DataInicio, HoraInicio, DataFim, HoraFim
-                AddDateTimeField("Data Início", "dtInicio", 10);
-                AddTimeField("Hora Início", "horaInicio", 60);
-                AddDateTimeField("Data Fim", "dtFim", 110);
-                AddTimeField("Hora Fim", "horaFim", 160);
+                AddDateTimeField("Data Início", "dtInicio", ref posY);
+                AddTimeField("Hora Início", "horaInicio", ref posY);
+                AddDateTimeField("Data Fim", "dtFim", ref posY);
+                AddTimeField("Hora Fim", "horaFim", ref posY);
             }
             else if (metodo == "GetFinanceiroPorPeca")
             {
-                pnlParametros.Controls.Add(new Label() { Text = "Código da Peça", Top = 10, Left = 10 });
-                pnlParametros.Controls.Add(new TextBox() { Name = "txtCodigoPeca", Top = 30, Left = 10, Width = 150 });
+                pnlParametros.Controls.Add(new Label() { Text = "Código da Peça", Top = posY, Left = 10 });
+                posY += 20;
+                pnlParametros.Controls.Add(new TextBox() { Name = "txtCodigoPeca", Top = posY+5, Left = 10, Width = 150 });
             }
         }
+
 
 
         // Evento do "botão Selecionar" para executar o método selecionado
@@ -108,12 +108,10 @@ namespace ClienteSOAP
             string nome = cbMetodo.SelectedItem.ToString();
             string metodo = metodosSOAP[nome];
             textResultado.Clear();
-            
- 
 
             try
             {
-                if (metodo == "GetCustoTotalPeriodo")
+                if (metodo == "GetCustoTotalPeriodo" || metodo == "GetLucroTotalPeriodo" || metodo == "GetPrejuizoPorPecaPeriodo")
                 {
                     DateTime di = GetDate("dtInicio");
                     TimeSpan hi = GetTime("horaInicio");
@@ -125,63 +123,54 @@ namespace ClienteSOAP
                     string dataFimStr = df.ToString("yyyy-MM-dd");
                     string horaFimStr = hf.ToString(@"hh\:mm\:ss");
 
-                    var result = client.GetCustoTotalPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
-                    textResultado.Text = $"Custo total: €{result}";
+                    if (metodo == "GetCustoTotalPeriodo")
+                    {
+                        var result = client.GetCustoTotalPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
+                        textResultado.Text = $"Custo total: €{result}";
+                    }
+                    else if (metodo == "GetLucroTotalPeriodo")
+                    {
+                        var result = client.GetLucroTotalPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
+                        textResultado.Text = $"Lucro total: €{result}";
+                    }
+                    else if (metodo == "GetPrejuizoPorPecaPeriodo")
+                    {
+                        var lista = client.GetPrejuizoPorPecaPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
+                        textResultado.AppendText("Prejuízo total por peça:\n");
+                        foreach (var item in lista)
+                            textResultado.AppendText($"{item.CodigoPeca}: €{item.PrejuizoTotal}\n");
+                    }
                 }
-                //else if (metodo == "getlucrototalperiodo")
-                //{
-                //    datetime di = getdate("dtinicio");
-                //    timespan hi = gettime("horainicio");
-                //    datetime df = getdate("dtfim");
-                //    timespan hf = gettime("horafim");
-
-                //    var result = client.getlucrototalperiodo(di, hi, df, hf);
-                //    txtresultado.text = $"lucro total: €{result}";
-                //}
-                //else if (metodo == "getprejuizoporpecaperiodo")
-                //{
-                //    datetime di = getdate("dtinicio");
-                //    timespan hi = gettime("horainicio");
-                //    datetime df = getdate("dtfim");
-                //    timespan hf = gettime("horafim");
-
-                //    var lista = client.getprejuizoporpecaperiodo(di, hi, df, hf);
-                //    txtresultado.appendtext("prejuízo total por peça:\n");
-                //    foreach (var item in lista)
-                //    {
-                //        txtresultado.appendtext($"{item.codigopeca}: €{item.prejuizototal}\n");
-                //    }
-                //}
-                //else if (metodo == "getpecacommaiorprejuizo")
-                //{
-                //    string result = client.getpecacommaiorprejuizo();
-                //    txtresultado.text = $"peça com maior prejuízo: {result}";
-                //}
-                //else if (metodo == "getfinanceiroporpeca")
-                //{
-                //    string codigo = ((textbox)pnlparametros.controls["txtcodigopeca"]).text;
-                //    var dados = client.getfinanceiroporpeca(codigo);
-                //    if (dados != null)
-                //    {
-                //        txtresultado.text =
-                //            $"código: {dados.codigo_peca}\n" +
-                //            $"id produto: {dados.id_produto}\n" +
-                //            $"tempo: {dados.tempo_producao} s\n" +
-                //            $"custo: €{dados.custo_producao}\n" +
-                //            $"lucro: €{dados.lucro}\n" +
-                //            $"prejuízo: €{dados.prejuizo}";
-                //    }
-                //    else
-                //    {
-                //        txtresultado.text = "peça não encontrada.";
-                //    }
-                //}
+                else if (metodo == "GetPecaComMaiorPrejuizo")
+                {
+                    string result = client.GetPecaComMaiorPrejuizo();
+                    textResultado.Text = $"Peça com maior prejuízo: {result}";
+                }
+                else if (metodo == "GetFinanceiroPorPeca")
+                {
+                    string codigo = ((TextBox)pnlParametros.Controls["txtCodigoPeca"]).Text;
+                    var dados = client.GetFinanceiroPorPeca(codigo);
+                    if (dados != null)
+                    {
+                        textResultado.Text =
+                            //$"ID Produto: {dados.ID_Produto}\n" +
+                            $"Código: {dados.Codigo_Peca}\n" +              
+                            $"Tempo: {dados.Tempo_Producao} s\n" +
+                            $"Custo: €{dados.Custo_Producao}\n" +
+                            $"Lucro: €{dados.Lucro}\n" +
+                            $"Prejuízo: €{dados.Prejuizo}";
+                    }
+                    else
+                    {
+                        textResultado.Text = "Peça não encontrada.";
+                    }
+                }
             }
             catch (Exception ex)
             {
                 textResultado.Text = "Erro: " + ex.Message;
             }
         }
-   
+    
     }
 }
