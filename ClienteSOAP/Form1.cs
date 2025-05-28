@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -118,6 +119,16 @@ namespace ClienteSOAP
                     DateTime df = GetDate("dtFim");
                     TimeSpan hf = GetTime("horaFim");
 
+                    //aux 
+                    DateTime dataHoraInicio = di + hi;
+                    DateTime dataHoraFim = df + hf;
+                    
+                    if (dataHoraInicio > dataHoraFim)
+                    {
+                        textResultado.Text = "Erro: a data/hora inicial deve ser anterior ou igual à final.";
+                        return;
+                    }
+
                     string dataInicioStr = di.ToString("yyyy-MM-dd");
                     string horaInicioStr = hi.ToString(@"hh\:mm\:ss");
                     string dataFimStr = df.ToString("yyyy-MM-dd");
@@ -126,29 +137,46 @@ namespace ClienteSOAP
                     if (metodo == "GetCustoTotalPeriodo")
                     {
                         var result = client.GetCustoTotalPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
-                        textResultado.Text = $"Custo total: €{result}";
+                        textResultado.Text = $"Custo total: €{result.ToString("F2")}";
                     }
                     else if (metodo == "GetLucroTotalPeriodo")
                     {
                         var result = client.GetLucroTotalPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
-                        textResultado.Text = $"Lucro total: €{result}";
+                        textResultado.Text = $"Lucro total: €{result.ToString("F2")}";
                     }
                     else if (metodo == "GetPrejuizoPorPecaPeriodo")
                     {
                         var lista = client.GetPrejuizoPorPecaPeriodo(dataInicioStr, horaInicioStr, dataFimStr, horaFimStr);
-                        textResultado.AppendText("Prejuízo total por peça:\n");
-                        foreach (var item in lista)
-                            textResultado.AppendText($"{item.CodigoPeca}: €{item.PrejuizoTotal}\n");
+
+                        if (lista == null || lista.Length == 0)
+                        {
+                            textResultado.Text = "Não há prejuízo nesse período de tempo.";
+                        }
+                        else
+                        {
+                            textResultado.AppendText("Prejuízo total por peça:\n");
+                            foreach (var item in lista)
+                            textResultado.AppendText($"{item.CodigoPeca}: €{item.PrejuizoTotal.ToString("F2")}\n");
+                        }                          
                     }
                 }
                 else if (metodo == "GetPecaComMaiorPrejuizo")
                 {
                     string result = client.GetPecaComMaiorPrejuizo();
-                    textResultado.Text = $"Peça com maior prejuízo: {result}";
+                    textResultado.Text = string.IsNullOrWhiteSpace(result)
+                                ? "Não há dados de prejuízo disponíveis."
+                                : $"Peça com maior prejuízo: {result}";
                 }
                 else if (metodo == "GetFinanceiroPorPeca")
                 {
                     string codigo = ((TextBox)pnlParametros.Controls["txtCodigoPeca"]).Text;
+
+                    if (!Regex.IsMatch(codigo, @"^[a-b]{2}\d{6}$", RegexOptions.IgnoreCase))
+                    {
+                        textResultado.Text = "Erro: o código da peça deve estar no formato 'aa123456' (duas letras a/b + seis dígitos).";
+                        return;
+                    }
+
                     var dados = client.GetFinanceiroPorPeca(codigo);
                     if (dados != null)
                     {
@@ -156,9 +184,9 @@ namespace ClienteSOAP
                             //$"ID Produto: {dados.ID_Produto}\n" +
                             $"Código: {dados.Codigo_Peca}\n" +              
                             $"Tempo: {dados.Tempo_Producao} s\n" +
-                            $"Custo: €{dados.Custo_Producao}\n" +
-                            $"Lucro: €{dados.Lucro}\n" +
-                            $"Prejuízo: €{dados.Prejuizo}";
+                            $"Custo: €{dados.Custo_Producao.ToString("F2")}\n" +
+                            $"Lucro: €{dados.Lucro.ToString("F2")}\n" +
+                            $"Prejuízo: €{dados.Prejuizo.ToString("F2")}";
                     }
                     else
                     {
@@ -168,9 +196,8 @@ namespace ClienteSOAP
             }
             catch (Exception ex)
             {
-                textResultado.Text = "Erro: " + ex.Message;
+                textResultado.Text = "Erro inesperado: " + ex.Message;
             }
         }
-    
     }
 }
