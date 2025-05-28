@@ -9,11 +9,200 @@
 //------------------------------------------------------------------------------
 
 namespace ClienteSOAP.FinanceiroWS {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PecaPrejuizo", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class PecaPrejuizo : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodigoPecaField;
+        
+        private decimal PrejuizoTotalField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false)]
+        public string CodigoPeca {
+            get {
+                return this.CodigoPecaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodigoPecaField, value) != true)) {
+                    this.CodigoPecaField = value;
+                    this.RaisePropertyChanged("CodigoPeca");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public decimal PrejuizoTotal {
+            get {
+                return this.PrejuizoTotalField;
+            }
+            set {
+                if ((this.PrejuizoTotalField.Equals(value) != true)) {
+                    this.PrejuizoTotalField = value;
+                    this.RaisePropertyChanged("PrejuizoTotal");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PecaFinanceiroDetalhado", Namespace="http://tempuri.org/")]
+    [System.SerializableAttribute()]
+    public partial class PecaFinanceiroDetalhado : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        private int ID_ProdutoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string Codigo_PecaField;
+        
+        private int Tempo_ProducaoField;
+        
+        private decimal Custo_ProducaoField;
+        
+        private decimal LucroField;
+        
+        private decimal PrejuizoField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
+        public int ID_Produto {
+            get {
+                return this.ID_ProdutoField;
+            }
+            set {
+                if ((this.ID_ProdutoField.Equals(value) != true)) {
+                    this.ID_ProdutoField = value;
+                    this.RaisePropertyChanged("ID_Produto");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string Codigo_Peca {
+            get {
+                return this.Codigo_PecaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.Codigo_PecaField, value) != true)) {
+                    this.Codigo_PecaField = value;
+                    this.RaisePropertyChanged("Codigo_Peca");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=2)]
+        public int Tempo_Producao {
+            get {
+                return this.Tempo_ProducaoField;
+            }
+            set {
+                if ((this.Tempo_ProducaoField.Equals(value) != true)) {
+                    this.Tempo_ProducaoField = value;
+                    this.RaisePropertyChanged("Tempo_Producao");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public decimal Custo_Producao {
+            get {
+                return this.Custo_ProducaoField;
+            }
+            set {
+                if ((this.Custo_ProducaoField.Equals(value) != true)) {
+                    this.Custo_ProducaoField = value;
+                    this.RaisePropertyChanged("Custo_Producao");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=4)]
+        public decimal Lucro {
+            get {
+                return this.LucroField;
+            }
+            set {
+                if ((this.LucroField.Equals(value) != true)) {
+                    this.LucroField = value;
+                    this.RaisePropertyChanged("Lucro");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
+        public decimal Prejuizo {
+            get {
+                return this.PrejuizoField;
+            }
+            set {
+                if ((this.PrejuizoField.Equals(value) != true)) {
+                    this.PrejuizoField = value;
+                    this.RaisePropertyChanged("Prejuizo");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FinanceiroWS.FinanceiroServiceSoap")]
     public interface FinanceiroServiceSoap {
+        
+        // CODEGEN: Generating message contract since element name GetPecaComMaiorPrejuizoResult from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPecaComMaiorPrejuizo", ReplyAction="*")]
+        ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse GetPecaComMaiorPrejuizo(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPecaComMaiorPrejuizo", ReplyAction="*")]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse> GetPecaComMaiorPrejuizoAsync(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest request);
         
         // CODEGEN: Generating message contract since element name dataInicio from namespace http://tempuri.org/ is not marked nillable
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCustoTotalPeriodo", ReplyAction="*")]
@@ -21,6 +210,88 @@ namespace ClienteSOAP.FinanceiroWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetCustoTotalPeriodo", ReplyAction="*")]
         System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoResponse> GetCustoTotalPeriodoAsync(ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoRequest request);
+        
+        // CODEGEN: Generating message contract since element name dataInicio from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetLucroTotalPeriodo", ReplyAction="*")]
+        ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse GetLucroTotalPeriodo(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetLucroTotalPeriodo", ReplyAction="*")]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse> GetLucroTotalPeriodoAsync(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest request);
+        
+        // CODEGEN: Generating message contract since element name dataInicio from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPrejuizoPorPecaPeriodo", ReplyAction="*")]
+        ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse GetPrejuizoPorPecaPeriodo(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetPrejuizoPorPecaPeriodo", ReplyAction="*")]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse> GetPrejuizoPorPecaPeriodoAsync(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest request);
+        
+        // CODEGEN: Generating message contract since element name codigoPeca from namespace http://tempuri.org/ is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetFinanceiroPorPeca", ReplyAction="*")]
+        ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse GetFinanceiroPorPeca(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GetFinanceiroPorPeca", ReplyAction="*")]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse> GetFinanceiroPorPecaAsync(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPecaComMaiorPrejuizoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPecaComMaiorPrejuizo", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequestBody Body;
+        
+        public GetPecaComMaiorPrejuizoRequest() {
+        }
+        
+        public GetPecaComMaiorPrejuizoRequest(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class GetPecaComMaiorPrejuizoRequestBody {
+        
+        public GetPecaComMaiorPrejuizoRequestBody() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPecaComMaiorPrejuizoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPecaComMaiorPrejuizoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponseBody Body;
+        
+        public GetPecaComMaiorPrejuizoResponse() {
+        }
+        
+        public GetPecaComMaiorPrejuizoResponse(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPecaComMaiorPrejuizoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string GetPecaComMaiorPrejuizoResult;
+        
+        public GetPecaComMaiorPrejuizoResponseBody() {
+        }
+        
+        public GetPecaComMaiorPrejuizoResponseBody(string GetPecaComMaiorPrejuizoResult) {
+            this.GetPecaComMaiorPrejuizoResult = GetPecaComMaiorPrejuizoResult;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -103,6 +374,234 @@ namespace ClienteSOAP.FinanceiroWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLucroTotalPeriodoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLucroTotalPeriodo", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequestBody Body;
+        
+        public GetLucroTotalPeriodoRequest() {
+        }
+        
+        public GetLucroTotalPeriodoRequest(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetLucroTotalPeriodoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string dataInicio;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string horaInicio;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string dataFim;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string horaFim;
+        
+        public GetLucroTotalPeriodoRequestBody() {
+        }
+        
+        public GetLucroTotalPeriodoRequestBody(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            this.dataInicio = dataInicio;
+            this.horaInicio = horaInicio;
+            this.dataFim = dataFim;
+            this.horaFim = horaFim;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetLucroTotalPeriodoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetLucroTotalPeriodoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponseBody Body;
+        
+        public GetLucroTotalPeriodoResponse() {
+        }
+        
+        public GetLucroTotalPeriodoResponse(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetLucroTotalPeriodoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(Order=0)]
+        public decimal GetLucroTotalPeriodoResult;
+        
+        public GetLucroTotalPeriodoResponseBody() {
+        }
+        
+        public GetLucroTotalPeriodoResponseBody(decimal GetLucroTotalPeriodoResult) {
+            this.GetLucroTotalPeriodoResult = GetLucroTotalPeriodoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPrejuizoPorPecaPeriodoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPrejuizoPorPecaPeriodo", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequestBody Body;
+        
+        public GetPrejuizoPorPecaPeriodoRequest() {
+        }
+        
+        public GetPrejuizoPorPecaPeriodoRequest(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPrejuizoPorPecaPeriodoRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string dataInicio;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string horaInicio;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string dataFim;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string horaFim;
+        
+        public GetPrejuizoPorPecaPeriodoRequestBody() {
+        }
+        
+        public GetPrejuizoPorPecaPeriodoRequestBody(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            this.dataInicio = dataInicio;
+            this.horaInicio = horaInicio;
+            this.dataFim = dataFim;
+            this.horaFim = horaFim;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetPrejuizoPorPecaPeriodoResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetPrejuizoPorPecaPeriodoResponse", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponseBody Body;
+        
+        public GetPrejuizoPorPecaPeriodoResponse() {
+        }
+        
+        public GetPrejuizoPorPecaPeriodoResponse(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetPrejuizoPorPecaPeriodoResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public ClienteSOAP.FinanceiroWS.PecaPrejuizo[] GetPrejuizoPorPecaPeriodoResult;
+        
+        public GetPrejuizoPorPecaPeriodoResponseBody() {
+        }
+        
+        public GetPrejuizoPorPecaPeriodoResponseBody(ClienteSOAP.FinanceiroWS.PecaPrejuizo[] GetPrejuizoPorPecaPeriodoResult) {
+            this.GetPrejuizoPorPecaPeriodoResult = GetPrejuizoPorPecaPeriodoResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetFinanceiroPorPecaRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetFinanceiroPorPeca", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequestBody Body;
+        
+        public GetFinanceiroPorPecaRequest() {
+        }
+        
+        public GetFinanceiroPorPecaRequest(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetFinanceiroPorPecaRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string codigoPeca;
+        
+        public GetFinanceiroPorPecaRequestBody() {
+        }
+        
+        public GetFinanceiroPorPecaRequestBody(string codigoPeca) {
+            this.codigoPeca = codigoPeca;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class GetFinanceiroPorPecaResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="GetFinanceiroPorPecaResponse", Namespace="http://tempuri.org/", Order=0)]
+        public ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponseBody Body;
+        
+        public GetFinanceiroPorPecaResponse() {
+        }
+        
+        public GetFinanceiroPorPecaResponse(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class GetFinanceiroPorPecaResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public ClienteSOAP.FinanceiroWS.PecaFinanceiroDetalhado GetFinanceiroPorPecaResult;
+        
+        public GetFinanceiroPorPecaResponseBody() {
+        }
+        
+        public GetFinanceiroPorPecaResponseBody(ClienteSOAP.FinanceiroWS.PecaFinanceiroDetalhado GetFinanceiroPorPecaResult) {
+            this.GetFinanceiroPorPecaResult = GetFinanceiroPorPecaResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface FinanceiroServiceSoapChannel : ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap, System.ServiceModel.IClientChannel {
     }
@@ -128,6 +627,29 @@ namespace ClienteSOAP.FinanceiroWS {
         
         public FinanceiroServiceSoapClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetPecaComMaiorPrejuizo(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest request) {
+            return base.Channel.GetPecaComMaiorPrejuizo(request);
+        }
+        
+        public string GetPecaComMaiorPrejuizo() {
+            ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest inValue = new ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequestBody();
+            ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse retVal = ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetPecaComMaiorPrejuizo(inValue);
+            return retVal.Body.GetPecaComMaiorPrejuizoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse> ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetPecaComMaiorPrejuizoAsync(ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest request) {
+            return base.Channel.GetPecaComMaiorPrejuizoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse> GetPecaComMaiorPrejuizoAsync() {
+            ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest inValue = new ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoRequestBody();
+            return ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetPecaComMaiorPrejuizoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -159,6 +681,93 @@ namespace ClienteSOAP.FinanceiroWS {
             inValue.Body.dataFim = dataFim;
             inValue.Body.horaFim = horaFim;
             return ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetCustoTotalPeriodoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetLucroTotalPeriodo(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest request) {
+            return base.Channel.GetLucroTotalPeriodo(request);
+        }
+        
+        public decimal GetLucroTotalPeriodo(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequestBody();
+            inValue.Body.dataInicio = dataInicio;
+            inValue.Body.horaInicio = horaInicio;
+            inValue.Body.dataFim = dataFim;
+            inValue.Body.horaFim = horaFim;
+            ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse retVal = ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetLucroTotalPeriodo(inValue);
+            return retVal.Body.GetLucroTotalPeriodoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse> ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetLucroTotalPeriodoAsync(ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest request) {
+            return base.Channel.GetLucroTotalPeriodoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse> GetLucroTotalPeriodoAsync(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoRequestBody();
+            inValue.Body.dataInicio = dataInicio;
+            inValue.Body.horaInicio = horaInicio;
+            inValue.Body.dataFim = dataFim;
+            inValue.Body.horaFim = horaFim;
+            return ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetLucroTotalPeriodoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetPrejuizoPorPecaPeriodo(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest request) {
+            return base.Channel.GetPrejuizoPorPecaPeriodo(request);
+        }
+        
+        public ClienteSOAP.FinanceiroWS.PecaPrejuizo[] GetPrejuizoPorPecaPeriodo(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequestBody();
+            inValue.Body.dataInicio = dataInicio;
+            inValue.Body.horaInicio = horaInicio;
+            inValue.Body.dataFim = dataFim;
+            inValue.Body.horaFim = horaFim;
+            ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse retVal = ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetPrejuizoPorPecaPeriodo(inValue);
+            return retVal.Body.GetPrejuizoPorPecaPeriodoResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse> ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetPrejuizoPorPecaPeriodoAsync(ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest request) {
+            return base.Channel.GetPrejuizoPorPecaPeriodoAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse> GetPrejuizoPorPecaPeriodoAsync(string dataInicio, string horaInicio, string dataFim, string horaFim) {
+            ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest inValue = new ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoRequestBody();
+            inValue.Body.dataInicio = dataInicio;
+            inValue.Body.horaInicio = horaInicio;
+            inValue.Body.dataFim = dataFim;
+            inValue.Body.horaFim = horaFim;
+            return ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetPrejuizoPorPecaPeriodoAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetFinanceiroPorPeca(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest request) {
+            return base.Channel.GetFinanceiroPorPeca(request);
+        }
+        
+        public ClienteSOAP.FinanceiroWS.PecaFinanceiroDetalhado GetFinanceiroPorPeca(string codigoPeca) {
+            ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest inValue = new ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequestBody();
+            inValue.Body.codigoPeca = codigoPeca;
+            ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse retVal = ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetFinanceiroPorPeca(inValue);
+            return retVal.Body.GetFinanceiroPorPecaResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse> ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap.GetFinanceiroPorPecaAsync(ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest request) {
+            return base.Channel.GetFinanceiroPorPecaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse> GetFinanceiroPorPecaAsync(string codigoPeca) {
+            ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest inValue = new ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequest();
+            inValue.Body = new ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaRequestBody();
+            inValue.Body.codigoPeca = codigoPeca;
+            return ((ClienteSOAP.FinanceiroWS.FinanceiroServiceSoap)(this)).GetFinanceiroPorPecaAsync(inValue);
         }
     }
 }
