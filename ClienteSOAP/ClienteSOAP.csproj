@@ -76,6 +76,24 @@
     <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.GetCustoTotalPeriodoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.GetFinanceiroPorPecaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.GetLucroTotalPeriodoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.GetPecaComMaiorPrejuizoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.GetPrejuizoPorPecaPeriodoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.PecaFinanceiroDetalhado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FinanceiroWS\ClienteSOAP.FinanceiroWS.PecaPrejuizo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\FinanceiroWS\FinanceiroService.wsdl" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
