@@ -13,7 +13,7 @@ using var channel = await connection.CreateChannelAsync();
 await channel.ExchangeDeclareAsync(exchange: "productionLine", type: ExchangeType.Topic);
 
 
-//criara straem
+//criar a stream
 var streamSystem = await StreamSystem.Create(new StreamSystemConfig());
 
 await streamSystem.CreateStream(new StreamSpec("production-stream")
