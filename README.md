@@ -85,8 +85,8 @@ A aplicação disponibiliza métodos financeiros acessíveis via Web Service SOA
   	- Se for Custo, Lucro ou Prejuízo surge campos para colocar a data e hora inicial e final;
   	- Se for Peça com maior prejuízo, não aparece nada, porque é direto;
   	- Dados financeiros detalhados por código da peça, surge um campo para colocar lá o número da peça que quer consultar;
-  * Botão Selecionar, para executar o método escolhido;
-  * Resultados exibidos num RichTextBox, de formatados de forma dinâmica;
+  * Botão para selecionar para executar o método escolhido;
+  * RichTextBox para exibir os resultados de forma dinâmica de acordo com o metodo executado;
 
 ![Interface da SOAP API](Diagramas/Demo_Interface.png)
 
