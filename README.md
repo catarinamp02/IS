@@ -25,7 +25,11 @@ Em seguida apresenta-se um diagrama que representa o fluxo de dados entre os com
 
 ## 🐰 RabbitMQ Stream
 
+A aplicação **Production Line** publica os dados de produção no stream denominado **production-stream**. Este encaminha os dados tanto para um componente de armazenamento interno, onde são guardados backlogs, como para a aplicação **Analytics GUI**.  A aplicação **Analytics GUI**, desenvolvida para análise e visualização de métricas, consome os dados diretamente do stream, processando-os em tempo real para apresentar informações relevantes sobre a produção 
 
+Em seguida apresenta-se um diagrama representativo do funcionamento da stream:
+
+![Diagrama representativo do projeto](Diagramas/RabbitMQStream_Diagram.png)
 
 ## 🧼 SOAP API
 
