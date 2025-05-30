@@ -9,12 +9,6 @@ Em seguida apresenta-se um diagrama representativo do projeto:
 
 ![Diagrama representativo do projeto](Diagramas/IntegrationDiagram.png)
 
+🐰 ##RabbitMQ
 
-
-
-##RabbitMQ
-texto
-
-##RabbitMQ Stream
-
-##API SOAP
+![Diagrama representativo do projeto](Diagramas/RabbitMQDiagram.png)
