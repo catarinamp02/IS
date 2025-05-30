@@ -69,7 +69,7 @@ Este projeto foi desenvolvido com recurso a várias tecnologias e ferramentas in
 
 
 ### 🔧 Funcionalidades ###
-A aplicação disponibiliza métodos financeiros acessíveis via Web Service SOAP, com foco na análise de dados de produção num intervalo temporal (DATA e HORA):
+A aplicação disponibiliza métodos financeiros acessíveis via Web Service SOAP, com foco na análise de dados de produção num intervalo temporal:
  * Custo total de produção;
  * Lucro total obtido com a produção;
  * Prejuízo total por peça; 
