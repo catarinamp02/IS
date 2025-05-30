@@ -10,9 +10,21 @@ Em seguida apresenta-se um diagrama representativo do projeto:
 ![Diagrama representativo do projeto](Diagramas/IntegrationDiagram.png)
 
 ## 🐰 RabbitMQ
+A aplicação Production Line publica mensagens num exchange do tipo *topic* designado **productionLine**. Cada mensagem é publicada com uma *routing key* específica, que descreve o tipo de dado transmitido:
+- dados.producao.falha -> sempre que o resultado do teste da peça está entre 2 e 5, inclusivé;
+- dados.producao.sucesso -> sempre que o resultado do teste da peça é 1;
+- dados.producao.desconhecido -> para qualquer outro resultado do teste da peça;
+
+Esta exchange distribui as mensagens por diferentes filas com base nas *routing keys*:
+- A fila **DadosProd** está configurada para receber todas as mensagens com o padrão **dados.produca.#**, ou seja, qualquer mensagens cuja *routing key* comece por dados.producao. Esta fila é consumida pela API REST, uma vez que o objetivo é inserir todas as peças produzidas na base de dados Prdicao;
+- A fila **FalhasProd** recebe mensagens com *routing keys* mais específicas: **dados.producao.falha** e **dados.producao.desconhecido**. Ou seja, todos os dados de peças com falhas. Por esse motivo esta fila é consumida pela aplicação **GUI Falhas**, que apresenta apenas os dados de peças com falha;
+
+Em seguida apresenta-se um diagrama que representa o fluxo de dados entre os componentes do sistema através do RabbitMQ:
 
 ![Diagrama representativo do projeto](Diagramas/RabbitMQDiagram.png)
 
 ## 🐰 RabbitMQ Stream
 
-## SOAP API
+
+
+## 🧼 SOAP API
