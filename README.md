@@ -54,58 +54,60 @@ Este projeto foi desenvolvido com recurso a várias tecnologias e ferramentas in
 
   * 🔧 **C# (.NET Framework)** – Linguagem principal de programação para o Web Service e cliente WinForms.
   
-  * 💻 **ASP.NET Web Services (SOAP)** – Para criar a API SOAP (arquivo .asmx) que expõe métodos financeiros.
+  * 💻 **ASP.NET Web Aplication (.NET Framework) ** – Para criar a API SOAP (FinanceiroService.asmx) que expõe métodos financeiros (com wfc).
   
   * 🗃️ **SQL Server** – Utilizado como base de dados relacional para armazenar os dados de produção e contabilidade.
   
-  * 🧪 **Stored Procedures** – Todas as operações da API são baseadas em procedimentos armazenados, com lógica no SQL Server.
+  * 🧪 **Stored Procedures** – Todas as operações da API são baseadas em procedimentos armazenados, com lógica no SQL Server (Nota: na pasta Queries, ficheiro contabilidade.sql, estão as stored procedures).
   
   * 🪟 **WinForms (.NET Framework)** – Interface gráfica desenvolvida para facilitar o teste e uso dos métodos SOAP.
   
   * 🔍 **Regex** – Utilizado para validar o formato do código das peças ([a-b][a-b][0-9]{6}).
   
-  * 🔗 **WSDL / Service Reference** – Comunicação entre cliente e servidor feita através de WSDL gerado automaticamente.
+  * 🔗 **WSDL / Service Reference** – Comunicação entre cliente (ClienteSOAP) e servidor feita através de WSDL gerado automaticamente.
 
 
 
 ### 🔧 Funcionalidades ###
 A aplicação disponibiliza métodos financeiros acessíveis via Web Service SOAP, com foco na análise de dados de produção num intervalo temporal (DATA e HORA):
-    * Custo total de produção
-    * Lucro total obtido com a produção
-    * Prejuízo total por peça 
-    * Peça com maior prejuízo
-    * Dados financeiros detalhados por código da peça
+ * Custo total de produção;
+ * Lucro total obtido com a produção;
+ * Prejuízo total por peça; 
+ * Peça com maior prejuízo;
+ * Dados financeiros detalhados por código da peça;
 
 
 
-### 🪟 Interface gráfica (WinForms) ###
+### 🪟 Interface gráfica (WinForms (.NET Framework)) ###
 
-  * ComboBox para selecionar o método desejado
+  * ComboBox para selecionar o método desejado;
   * Painel dinâmico que exibe apenas os campos necessários:
   	- Se for Custo, Lucro ou Prejuízo surge campos para colocar a data e hora inicial e final;
-  	- Se for Peça com maior prejuízo, não aparece nada, porque é direto
-  	- Dados financeiros detalhados por código da peça, surge um campo para colocar lá o número da peça que quer consultar
-  
-  * Resultados exibidos num RichTextBox, de formatados de forma dinâmica
+  	- Se for Peça com maior prejuízo, não aparece nada, porque é direto;
+  	- Dados financeiros detalhados por código da peça, surge um campo para colocar lá o número da peça que quer consultar;
+  * Botão Selecionar, para executar o método escolhido;
+  * Resultados exibidos num RichTextBox, de formatados de forma dinâmica;
 
-
+![Interface da SOAP API](Diagramas/Demo_Interface.png)
 
 ### ✅ Validações incluídas ###
 
-- Verificação do Formato do código da peça ('[a-b][a-b][0-9]{6}')
-- Garantia de que data/hora inicial ≤ data/hora final
-- Tratamento de erros de conexão
-- Exibição de mensagens quando não há dados
+- Verificação do Formato do código da peça ('[a-b][a-b][0-9]{6}');
+- Garantia de que data/hora inicial ≤ data/hora final;
+- Tratamento de erros de conexão;
+- Exibição de mensagens quando não há dados;
 
 
 
 ### 💻 Como testar? ###
 
-  1 - Executa a API SOAP (FinanceiroService.asmx) no Visual Studio
-    - URL: http://localhost:52661/FinanceiroService.asmx  
-  2 - Abre e executa o Cliente WinForm (ClienteSOAP) 
-  3 - Na aplicação:	
-    - Seleciona um método da lista da ComboBox
-    - Preenche os campos exibidos no painel
-    - Clica no botão "Selecionar" 
-  4- Os resultados irão aparecer do lado direito dinâmicamente, de acordo com o método escolhido
+1 - Executa a API SOAP (FinanceiroService.asmx) no Visual Studio (URL: http://localhost:52661/FinanceiroService.asmx); 
+    
+2 - Abre e executa o Cliente WinForm (ClienteSOAP); 
+  
+3 - Na aplicação:	
+* Seleciona um método da lista da ComboBox;
+* Preenche os campos exibidos no painel;
+* Clica no botão "Selecionar"; 
+    
+4- Os resultados irão aparecer do lado direito dinâmicamente, de acordo com o método escolhido;
