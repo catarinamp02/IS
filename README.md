@@ -5,14 +5,15 @@ A aplicação **Data Transmitter** tem como função receber os dados da produç
 Paralelamente, a consola **Production Line** envia dados em tempo real para a aplicação **GUI Analytics**, utilizando o **RabbitMQ Stream**. Esta aplicação, também desenvolvida em Windows Forms, apresenta métricas analíticas sobre a produção com base nos dados recebidos via stream. 
 Por fim, o sistema integra ainda uma **API SOAP** para disponibilizar dados financeiros. Esta API está ligada à **base de dados Contabilidade**, a qual é automaticamente atualizada com dados provenientes da base de dados Producao, por meio de um **trigger** numa das suas tabelas.
 
-Em seguida apresenta-se um diagrama representativo do fluxo de dados na integração:
+Em seguida apresenta-se um diagrama representativo do projeto:
 
-![Diagrama representativo do projeto](Diagramas/IntegrationDiagram)
+![Diagrama representativo do projeto](Diagramas/IntegrationDiagram.png)
 
 
 
 
 ##RabbitMQ
+texto
 
 ##RabbitMQ Stream
 
