@@ -7,6 +7,10 @@ Por fim, o sistema integra ainda uma **API SOAP** para disponibilizar dados fina
 
 Em seguida apresenta-se um diagrama representativo do fluxo de dados na integração:
 
+![Diagrama representativo do projeto](Diagramas/IntegrationDiagram)
+
+
+
 
 ##RabbitMQ
 
