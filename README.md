@@ -11,17 +11,23 @@ Em seguida apresenta-se um diagrama representativo do projeto:
 
 ## 🐰 RabbitMQ
 A aplicação Production Line publica mensagens num exchange do tipo *topic* designado **productionLine**. Cada mensagem é publicada com uma *routing key* específica, que descreve o tipo de dado transmitido:
-- dados.producao.falha -> sempre que o resultado do teste da peça está entre 2 e 5, inclusivé;
-- dados.producao.sucesso -> sempre que o resultado do teste da peça é 1;
-- dados.producao.desconhecido -> para qualquer outro resultado do teste da peça;
+- **dados.producao.falha** -> sempre que o resultado do teste da peça está entre 2 e 5, inclusive;
+- **dados.producao.sucesso** -> sempre que o resultado do teste da peça é 1;
+- **dados.producao.desconhecido** -> para qualquer outro resultado do teste da peça;
 
 Esta exchange distribui as mensagens por diferentes filas com base nas *routing keys*:
-- A fila **DadosProd** está configurada para receber todas as mensagens com o padrão **dados.produca.#**, ou seja, qualquer mensagens cuja *routing key* comece por dados.producao. Esta fila é consumida pela API REST, uma vez que o objetivo é inserir todas as peças produzidas na base de dados Prdicao;
-- A fila **FalhasProd** recebe mensagens com *routing keys* mais específicas: **dados.producao.falha** e **dados.producao.desconhecido**. Ou seja, todos os dados de peças com falhas. Por esse motivo esta fila é consumida pela aplicação **GUI Falhas**, que apresenta apenas os dados de peças com falha;
+- A **fila DadosProd** está configurada para receber todas as mensagens com o padrão **dados.produca.#**, ou seja, qualquer mensagens cuja *routing key* comece por dados.producao. Esta fila é consumida pela API REST, uma vez que o objetivo é inserir todas as peças produzidas na base de dados Prdicao;
+- A **fila FalhasProd** recebe mensagens com *routing keys* mais específicas: **dados.producao.falha** e **dados.producao.desconhecido**. Ou seja, todos os dados de peças com falhas. Por esse motivo esta fila é consumida pela aplicação **GUI Falhas**, que apresenta apenas os dados de peças com falha;
 
 Em seguida apresenta-se um diagrama que representa o fluxo de dados entre os componentes do sistema através do RabbitMQ:
 
-![Diagrama representativo do projeto](Diagramas/RabbitMQDiagram.png)
+![Diagrama representativo do RabbitMQ ](Diagramas/RabbitMQDiagram.png)
+
+## 🪟 Interface gráfica GUI Falhas (WinForms (.NET Framework))
+Consiste numa interface gráfica simples e dinâmica, ou seja, os dados são apresentados à medida que são gerados na linha de produção. A interface consiste em *labels* correspondentes ao tipo de informação sobre a peça seguidas de *TextBox* com o respetivo valor. Quando é gerada uma peça sem falha, os dados da interface não são atualizados até surgir uma nova peça com falha.
+Segue-se uma imagem representativa do aspeto da interface:
+
+
 
 ## 🐰 RabbitMQ Stream
 
@@ -29,10 +35,24 @@ A aplicação **Production Line** publica os dados de produção no stream denom
 
 Em seguida apresenta-se um diagrama representativo do funcionamento da stream:
 
-![Diagrama representativo do projeto](Diagramas/RabbitMQStream_Diagram.png)
+![Diagrama representativo do RabbitMQ Stream](Diagramas/RabbitMQStream_Diagram.png)
+
+## 🪟 Interface gráfica Analytics GUI (WinForms (.NET Framework))
+Consiste numa interface simples e dinâmica,ou seja, os dados da interface são atualizados consoante o tempo de produção de cada peça. A interface apresenta as sguintes métricas, em tempo real, relativamente aos dados recebidos da stream:
+- Número total de peças produzidas;
+- Número total de peças produzidas com falha;
+- Número total de peças OK;
+- Tempo médio de produção.
+
+Segue-se uma imagem representativa do aspeto da interface:
+
+
+## 💻 Como testar
+1. Instalar o **RabbitMQ Server** (localmente ou no Docker): https://www.rabbitmq.com/docs/download
+2. Iniciar o servidor RabbitMQ
+3. Executar todas as aplicações em simultâneo, incluindo a API REST.
 
 ## 🧼 SOAP API
-
 
 ### 📌 Sistema Financeiro de Integração via API SOAP ###
 
