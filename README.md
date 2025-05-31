@@ -48,11 +48,6 @@ Segue-se uma imagem representativa do aspeto da interface:
 
 ![Interface Analytics GUI](Diagramas/GUI_Analytics.png)
 
-## 💻 Como testar
-1. Instalar o **RabbitMQ Server** (localmente ou no Docker): https://www.rabbitmq.com/docs/download
-2. Iniciar o servidor RabbitMQ
-3. Executar todas as aplicações em simultâneo, incluindo a API REST.
-
 ## 🧼 SOAP API
 
 ### 📌 Sistema Financeiro de Integração via API SOAP ###
@@ -120,15 +115,13 @@ A aplicação disponibiliza métodos financeiros acessíveis via Web Service SOA
 
 
 
-### 💻 Como testar? ###
-
-1 - Executa a API SOAP (FinanceiroService.asmx) no Visual Studio (URL: http://localhost:52661/FinanceiroService.asmx); 
-    
-2 - Abre e executa o Cliente WinForm (ClienteSOAP); 
-  
-3 - Na aplicação:	
-* Seleciona um método da lista da ComboBox;
-* Preenche os campos exibidos no painel;
-* Clica no botão "Selecionar"; 
-    
-4- Os resultados irão aparecer do lado direito dinâmicamente, de acordo com o método escolhido;
+## 💻 Como testar?
+1. Instalar o **RabbitMQ Server** (localmente ou no Docker): https://www.rabbitmq.com/docs/download
+2. Iniciar o servidor RabbitMQ
+3. Executar a API SOAP (FinanceiroService.asmx) no Visual Studio (URL: http://localhost:52661/FinanceiroService.asmx); 
+4. Executar todas as aplicações em simultâneo
+ - Na aplicação ClienteSOAP:
+   - Seleciona um método da lista da ComboBox;
+   - Preenche os campos exibidos no painel;
+   - Clica no botão "Selecionar";
+   - Os resultados irão aparecer do lado direito dinâmicamente, de acordo com o método escolhido;
