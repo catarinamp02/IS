@@ -27,7 +27,7 @@ Em seguida apresenta-se um diagrama que representa o fluxo de dados entre os com
 Consiste numa interface gráfica simples e dinâmica, ou seja, os dados são apresentados à medida que são gerados na linha de produção. A interface consiste em *labels* correspondentes ao tipo de informação sobre a peça seguidas de *TextBox* com o respetivo valor. Quando é gerada uma peça sem falha, os dados da interface não são atualizados até surgir uma nova peça com falha.
 Segue-se uma imagem representativa do aspeto da interface:
 
-
+![Interface GUI Falhas](Diagramas/GUI_Falhas.png)
 
 ## 🐰 RabbitMQ Stream
 
@@ -46,6 +46,7 @@ Consiste numa interface simples e dinâmica,ou seja, os dados da interface são 
 
 Segue-se uma imagem representativa do aspeto da interface:
 
+![Interface Analytics GUI](Diagramas/GUI_Analytics.png)
 
 ## 💻 Como testar
 1. Instalar o **RabbitMQ Server** (localmente ou no Docker): https://www.rabbitmq.com/docs/download
