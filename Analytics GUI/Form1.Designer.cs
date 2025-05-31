@@ -129,7 +129,7 @@
             Controls.Add(TextBox_total_pecas);
             Controls.Add(label1);
             Name = "Form1";
-            Text = "Analytics";
+            Text = "Data Analytics";
             ResumeLayout(false);
             PerformLayout();
         }
